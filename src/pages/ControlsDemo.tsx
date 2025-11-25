@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
-import { Button, Input, Select, Checkbox } from '../components';
+import { Button, Input, Select, Checkbox, Tabs, Switch } from '../components';
 
 export default function ControlsDemo() {
   const [text, setText] = useState('Hello');
   const [single, setSingle] = useState<string>('apple');
   const [multi, setMulti] = useState<string[]>(['apple']);
   const [checked, setChecked] = useState<boolean>(true);
+  const [toggle, setToggle] = useState<boolean>(true);
 
   const options = [
     { label: 'Apple', value: 'apple' },
@@ -17,6 +18,17 @@ export default function ControlsDemo() {
     <div style={{ padding: '40px', maxWidth: '900px', margin: '0 auto' }}>
       <h2 style={{ fontSize: 28, fontWeight: 700, marginBottom: 16, color: 'var(--color-text)' }}>Controls Demo</h2>
       <div style={{ display: 'grid', gap: 20 }}>
+        <section>
+          <h3 style={{ fontSize: 18, fontWeight: 600 }}>Tabs</h3>
+          <Tabs
+            items={[
+              { key: 'general', label: 'General', content: <div style={{ color: 'var(--color-text-secondary)' }}>General settings content</div> },
+              { key: 'advanced', label: 'Advanced', content: <div style={{ color: 'var(--color-text-secondary)' }}>Advanced settings content</div> },
+              { key: 'disabled', label: 'Disabled', disabled: true, content: <div>Disabled</div> },
+            ]}
+            defaultActiveKey="general"
+          />
+        </section>
         <section>
           <h3 style={{ fontSize: 18, fontWeight: 600 }}>Button</h3>
           <div style={{ display: 'flex', gap: 12, flexWrap: 'wrap' }}>
@@ -57,8 +69,17 @@ export default function ControlsDemo() {
             <Checkbox disabled label="Disabled" />
           </div>
         </section>
+
+        <section>
+          <h3 style={{ fontSize: 18, fontWeight: 600 }}>Switch</h3>
+          <div style={{ display: 'flex', gap: 12, alignItems: 'center', flexWrap: 'wrap' }}>
+            <Switch checked={toggle} onChange={setToggle} />
+            <Switch size="small" />
+            <Switch size="large" />
+            <Switch disabled label="Disabled" />
+          </div>
+        </section>
       </div>
     </div>
   );
 }
-

@@ -16,3 +16,7 @@ export { Checkbox } from './Checkbox';
 export type { CheckboxProps } from './Checkbox';
 export { Form, FormItem } from './Form';
 export type { FormProps, FormItemProps, FormRule, FormLayout } from './Form';
+export { Tabs } from './Tabs';
+export type { TabsProps, TabItem, TabsSize } from './Tabs';
+export { Switch } from './Switch';
+export type { SwitchProps, SwitchSize } from './Switch';

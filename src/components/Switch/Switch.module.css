@@ -1,0 +1,55 @@
+.switch {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+  color: var(--color-text);
+}
+
+.button {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  width: 44px;
+  height: 24px;
+  box-sizing: border-box;
+  border: 1px solid var(--color-border);
+  border-radius: 999px;
+  background: var(--color-surface);
+  box-shadow: var(--shadow-small);
+  cursor: pointer;
+  transition: background-color var(--transition-medium), border-color var(--transition-medium);
+}
+
+.button:hover { border-color: var(--color-border-hover); }
+.button:focus-visible { outline: none; box-shadow: 0 0 0 3px var(--color-primary-light); }
+
+.thumb {
+  position: absolute;
+  left: 2px;
+  top: 50%;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: #ffffff;
+  box-shadow: var(--shadow-small);
+  transition: transform var(--transition-medium);
+  transform: translate(0, -50%);
+}
+
+.checked {
+  background: var(--color-primary);
+  border-color: var(--color-primary);
+}
+.checked .thumb { transform: translate(20px, -50%); }
+
+.disabled { opacity: 0.6; cursor: not-allowed; }
+
+.small .button { width: 36px; height: 20px; }
+.small .thumb { width: 16px; height: 16px; }
+.small .checked .thumb { transform: translate(16px, -50%); }
+
+.large .button { width: 56px; height: 32px; }
+.large .thumb { width: 28px; height: 28px; }
+.large .checked .thumb { transform: translate(24px, -50%); }
+
+.label { color: var(--color-text); }

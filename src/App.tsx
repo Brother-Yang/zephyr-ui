@@ -21,16 +21,12 @@ export default function App() {
           <Link to="/form" style={{ color: 'var(--color-primary)', textDecoration: 'none' }}>
             Form Demo
           </Link>
-          <Link to="/controls" style={{ color: 'var(--color-primary)', textDecoration: 'none' }}>
-            Controls Demo
-          </Link>
         </div>
       </nav>
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/table" element={<TableDemo />} />
-        <Route path="/table" element={<TableDemo />} />
-        <Route path="/controls" element={<div className="text-center text-xl">Controls Demo - See navigation</div>} />
+        <Route path="/controls" element={<ControlsDemo />} />
         <Route path="/form" element={<FormDemo />} />
         <Route path="/other" element={<div className="text-center text-xl">Other Page - Coming Soon</div>} />
       </Routes>

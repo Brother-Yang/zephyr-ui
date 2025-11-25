@@ -19,4 +19,3 @@ export interface SelectProps<T extends string | number = string | number> extend
   className?: string;
   style?: React.CSSProperties;
 }
-
