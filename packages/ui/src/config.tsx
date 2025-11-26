@@ -69,8 +69,7 @@ function applyThemeClass(theme: ThemeMode) {
   const effective = theme === 'system'
     ? (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light')
     : theme;
-  root.classList.toggle('dark', effective === 'dark');
-  root.classList.toggle('light', effective === 'light');
+  root.setAttribute('data-theme', effective);
 }
 
 export function ConfigProvider({ theme = 'light', locale = enUS, children }: { theme?: ThemeMode; locale?: Partial<Locale> | Locale; children: React.ReactNode }) {

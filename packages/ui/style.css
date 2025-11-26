@@ -1,17 +1,102 @@
+/* 设计令牌 - CSS Variables */
 :root {
-  --dui-bg: #ffffff;
-  --dui-text: #111827;
-  --dui-border: #e5e7eb;
-  --dui-muted: #6b7280;
-  --dui-accent: #2563eb;
-  --dui-table-row-hover: #f9fafb;
+  /* 颜色系统 */
+  --color-primary: #0066cc;
+  --color-primary-hover: #0052a3;
+  --color-primary-light: #e6f2ff;
+  --color-background: #ffffff;
+  --color-surface: #f7fafc;
+  --color-surface-hover: #edf2f7;
+  --color-text: #2d3748;
+  --color-text-secondary: #718096;
+  --color-text-disabled: #a0aec0;
+  --color-border: #e2e8f0;
+  --color-border-hover: #cbd5e0;
+  --color-border-focus: #0066cc;
+  --color-success: #38a169;
+  --color-warning: #d69e2e;
+  --color-error: #e53e3e;
+  
+  /* 圆角 */
+  --radius-small: 4px;
+  --radius-medium: 8px;
+  --radius-large: 12px;
+  --radius-full: 9999px;
+  
+  /* 阴影 */
+  --shadow-small: 0 1px 3px rgba(0, 0, 0, 0.1);
+  --shadow-medium: 0 4px 6px rgba(0, 0, 0, 0.1);
+  --shadow-large: 0 10px 15px rgba(0, 0, 0, 0.1);
+  --shadow-inner: inset 0 2px 4px rgba(0, 0, 0, 0.06);
+  
+  /* 动画 */
+  --transition-fast: 0.15s ease;
+  --transition-medium: 0.3s ease;
+  --transition-slow: 0.5s ease;
+  
+  /* 间距 */
+  --spacing-xs: 4px;
+  --spacing-sm: 8px;
+  --spacing-md: 16px;
+  --spacing-lg: 24px;
+  --spacing-xl: 32px;
+  
+  /* 字体大小 */
+  --font-size-xs: 12px;
+  --font-size-sm: 14px;
+  --font-size-base: 16px;
+  --font-size-lg: 18px;
+  --font-size-xl: 20px;
+  --font-size-2xl: 24px;
+  
+  /* 行高 */
+  --line-height-tight: 1.25;
+  --line-height-normal: 1.5;
+  --line-height-relaxed: 1.75;
+  
+  /* 字体权重 */
+  --font-weight-normal: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
 }
 
-.dark {
-  --dui-bg: #0b0f14;
-  --dui-text: #e5e7eb;
-  --dui-border: #1f2937;
-  --dui-muted: #9ca3af;
-  --dui-table-row-hover: #111827;
+/* 深色模式 */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-primary: #4a9eff;
+    --color-primary-hover: #3a7bd5;
+    --color-primary-light: #1a365d;
+    --color-background: #1a202c;
+    --color-surface: #2d3748;
+    --color-surface-hover: #4a5568;
+    --color-text: #f7fafc;
+    --color-text-secondary: #a0aec0;
+    --color-text-disabled: #718096;
+    --color-border: #4a5568;
+    --color-border-hover: #718096;
+    --color-border-focus: #4a9eff;
+    --color-success: #68d391;
+    --color-warning: #f6e05e;
+    --color-error: #fc8181;
+  }
 }
 
+/* 手动深色模式类 */
+[data-theme="dark"] {
+  --color-primary: #4a9eff;
+  --color-primary-hover: #3a7bd5;
+  --color-primary-light: #1a365d;
+  --color-background: #1a202c;
+  --color-surface: #2d3748;
+  --color-surface-hover: #4a5568;
+  --color-text: #f7fafc;
+  --color-text-secondary: #a0aec0;
+  --color-text-disabled: #718096;
+  --color-border: #4a5568;
+  --color-border-hover: #718096;
+  --color-border-focus: #4a9eff;
+  --color-success: #68d391;
+  --color-warning: #f6e05e;
+  --color-error: #fc8181;
+}

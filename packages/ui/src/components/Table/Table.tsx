@@ -1,5 +1,5 @@
 import React, { useState, useMemo } from 'react';
-import useConfig from '../../hooks/useConfig';
+import { useConfig } from '../../config';
 import { ChevronUp, ChevronDown } from 'lucide-react';
 import type { 
   TableProps, 

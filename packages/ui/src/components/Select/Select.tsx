@@ -1,5 +1,5 @@
 import React, { useEffect, useMemo, useRef, useState } from 'react';
-import useConfig from '../../hooks/useConfig';
+import { useConfig } from '../../config';
 import type { SelectProps } from '../../types/select';
 import styles from './Select.module.css';
 import '../../styles/variables.css';
