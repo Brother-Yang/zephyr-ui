@@ -120,7 +120,6 @@ export default function App() {
           <Form
             initialValues={{ username: '', agree: false, fruit: '', colors: [], newsletter: false }}
             onFinish={(vals) => console.log('form submit', vals)}
-            layout="vertical"
           >
             <FormItem name="username" label="Username" required rules={[{ min: 3, message: 'Min 3 chars' }]}>
               <Input placeholder="Enter username" />
