@@ -4,7 +4,8 @@
   gap: var(--spacing-sm);
   border: 1px solid var(--color-border);
   border-radius: var(--radius-medium);
-  padding: 0 var(--spacing-sm);
+  padding: 0 var(--input-padding-inline-md);
+  min-height: var(--input-height-md);
   background-color: var(--color-background);
   box-shadow: none;
 }
@@ -18,18 +19,19 @@
   background: transparent;
   color: var(--color-text);
   width: 100%;
-  padding: var(--spacing-sm) 0;
+  padding: 0;
   font-size: var(--font-size-sm);
+  line-height: 1;
 }
 
 .input::placeholder { color: var(--color-text-secondary); }
 
 /* Sizes */
-.input-small { height: 28px; font-size: var(--font-size-xs); }
-.input-medium { height: 36px; font-size: var(--font-size-sm); }
-.input-large { height: 44px; font-size: var(--font-size-base); }
+.input-small { min-height: var(--input-height-sm); font-size: var(--font-size-xs); padding: 0 var(--input-padding-inline-sm); }
+.input-medium { min-height: var(--input-height-md); font-size: var(--font-size-sm); padding: 0 var(--input-padding-inline-md); }
+.input-large { min-height: var(--input-height-lg); font-size: var(--font-size-base); padding: 0 var(--input-padding-inline-lg); }
 
-.prefix, .suffix { color: var(--color-text-secondary); display: inline-flex; align-items: center; }
+.prefix, .suffix { color: var(--color-text-secondary); display: inline-flex; align-items: center; pointer-events: none; }
 
 .clear {
   border: none;

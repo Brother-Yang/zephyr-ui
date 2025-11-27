@@ -7,6 +7,8 @@ export interface InputProps extends Omit<React.InputHTMLAttributes<HTMLInputElem
   value?: string;
   defaultValue?: string;
   onChange?: (value: string) => void;
+  onClear?: () => void;
+  onPressEnter?: (value: string) => void;
   placeholder?: string;
   disabled?: boolean;
   size?: InputSize;

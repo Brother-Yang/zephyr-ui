@@ -51,7 +51,39 @@ export default function App() {
 
         <div style={{ display: 'grid', gap: 12 }}>
           <div>
-            <Input value={inputValue} onChange={setInputValue} placeholder="Input" />
+            <Input
+              value={inputValue}
+              onChange={setInputValue}
+              placeholder="Input"
+              allowClear
+              prefix={<span>🔍</span>}
+              suffix={<span>{inputValue?.length || 0}</span>}
+              onPressEnter={(v) => console.log('enter', v)}
+            />
+          </div>
+          <div style={{ borderTop: '1px solid var(--dui-border)', paddingTop: 16 }}>
+            <h3 style={{ margin: '8px 0' }}>Input Examples</h3>
+            <div style={{ display: 'grid', gap: 12 }}>
+              <div style={{ display: 'flex', gap: 12, flexWrap: 'wrap', alignItems: 'center' }}>
+                <Input size="small" allowClear placeholder="Small" />
+                <Input size="medium" allowClear placeholder="Medium" />
+                <Input size="large" allowClear placeholder="Large" />
+              </div>
+              <div style={{ display: 'flex', gap: 12, flexWrap: 'wrap' }}>
+                <Input status="default" placeholder="Default" />
+                <Input status="error" placeholder="Error" />
+                <Input status="success" placeholder="Success" />
+                <Input status="warning" placeholder="Warning" />
+              </div>
+              <div style={{ display: 'flex', gap: 12, flexWrap: 'wrap' }}>
+                <Input disabled placeholder="Disabled" />
+                <Input readOnly defaultValue="Readonly" />
+              </div>
+              <div style={{ display: 'flex', gap: 12, flexWrap: 'wrap' }}>
+                <Input allowClear prefix={<span>🔍</span>} suffix={<span>kg</span>} placeholder="Prefix/Suffix" onPressEnter={(v) => console.log('enter affix', v)} />
+                <Input value={inputValue} onChange={setInputValue} allowClear placeholder="Controlled" onPressEnter={(v) => console.log('enter controlled', v)} />
+              </div>
+            </div>
           </div>
           <div>
             <Checkbox checked={checked} onChange={setChecked} label="Checkbox" />

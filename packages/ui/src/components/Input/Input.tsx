@@ -1,12 +1,16 @@
-import React, { useState } from 'react';
+import React, { useState, forwardRef } from 'react';
 import type { InputProps } from '../../types/input';
 import styles from './Input.module.css';
 import '../../styles/variables.css';
+import { useConfig } from '../../config';
 
-export default function Input({
+const Input = forwardRef<HTMLInputElement, InputProps>(function Input(
+{
   value,
   defaultValue,
   onChange,
+  onClear,
+  onPressEnter,
   placeholder,
   disabled,
   size = 'medium',
@@ -17,7 +21,8 @@ export default function Input({
   className = '',
   style,
   ...rest
-}: InputProps) {
+}: InputProps, ref) {
+  const { locale } = useConfig();
   const [internal, setInternal] = useState<string>(defaultValue || '');
   const isControlled = value !== undefined;
   const inputValue = isControlled ? value! : internal;
@@ -36,24 +41,42 @@ export default function Input({
     onChange?.(v);
   };
 
+  const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === 'Enter') onPressEnter?.(inputValue);
+    if (e.key === 'Escape' && allowClear && inputValue && !disabled) {
+      if (!isControlled) setInternal('');
+      onChange?.('');
+      onClear?.();
+    }
+  };
+
   return (
     <div className={wrapperClasses} style={style}>
       {prefix && <span className={styles.prefix}>{prefix}</span>}
       <input
         className={styles.input}
+        ref={ref}
         value={inputValue}
         onChange={handleChange}
+        onKeyDown={handleKeyDown}
         placeholder={placeholder}
         disabled={disabled}
+        aria-invalid={status === 'error' || undefined}
         {...rest}
       />
       {allowClear && inputValue && !disabled && (
-        <button className={styles.clear} onClick={() => { if (!isControlled) setInternal(''); onChange?.(''); }} aria-label="Clear">
+        <button
+          type="button"
+          className={styles.clear}
+          onClick={() => { if (!isControlled) setInternal(''); onChange?.(''); onClear?.(); }}
+          aria-label={locale?.input?.clear ?? 'Clear'}
+        >
           ×
         </button>
       )}
       {suffix && <span className={styles.suffix}>{suffix}</span>}
     </div>
   );
-}
+});
 
+export default Input;

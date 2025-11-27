@@ -15,6 +15,9 @@ type Locale = {
       items: string;
     };
   };
+  input: {
+    clear: string;
+  };
 };
 
 export const enUS: Locale = {
@@ -25,7 +28,8 @@ export const enUS: Locale = {
   table: {
     noData: 'No data',
     pagination: { prev: 'Prev', next: 'Next', items: 'items' }
-  }
+  },
+  input: { clear: 'Clear' }
 };
 
 export const zhCN: Locale = {
@@ -36,7 +40,8 @@ export const zhCN: Locale = {
   table: {
     noData: '暂无数据',
     pagination: { prev: '上一页', next: '下一页', items: '条' }
-  }
+  },
+  input: { clear: '清除' }
 };
 
 type ConfigContextValue = {
@@ -60,6 +65,9 @@ function mergeLocale(base: Locale, overrides: Partial<Locale> | Locale): Locale 
         next: o?.table?.pagination?.next ?? base.table.pagination.next,
         items: o?.table?.pagination?.items ?? base.table.pagination.items
       }
+    },
+    input: {
+      clear: o?.input?.clear ?? base.input.clear
     }
   };
 }

@@ -51,6 +51,14 @@
   --spinner-size-sm: 12px;
   --spinner-size-md: 16px;
   --spinner-size-lg: 18px;
+
+  /* 输入框尺寸变量 */
+  --input-height-sm: 32px;
+  --input-height-md: 40px;
+  --input-height-lg: 48px;
+  --input-padding-inline-sm: var(--spacing-sm);
+  --input-padding-inline-md: var(--spacing-md);
+  --input-padding-inline-lg: var(--spacing-lg);
   
   /* 字体大小 */
   --font-size-xs: 12px;
