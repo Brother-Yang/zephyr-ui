@@ -39,6 +39,22 @@ export default function App() {
     { name: 'Charlie', age: 22, address: 'New York' }
   ];
 
+  const bigData = useMemo(() => (
+    Array.from({ length: 42 }, (_, i) => ({
+      id: String(i + 1),
+      name: ['Alice', 'Bob', 'Charlie'][i % 3],
+      age: 20 + (i % 50),
+      address: ['Seattle', 'San Francisco', 'New York'][i % 3]
+    }))
+  ), []);
+
+  const [tablePage, setTablePage] = useState(1);
+  const [tablePageSize, setTablePageSize] = useState(5);
+  const [checkboxSelected, setCheckboxSelected] = useState<string[]>([]);
+  const [radioSelected, setRadioSelected] = useState<string | null>(null);
+  const [expandedKeys, setExpandedKeys] = useState<string[]>([]);
+  const [tableLoading, setTableLoading] = useState(false);
+
   return (
     <ConfigProvider theme={dark ? 'dark' : 'light'} locale={locale}>
       <div style={{ padding: 24, display: 'grid', gap: 16 }}>
@@ -144,6 +160,97 @@ export default function App() {
               bordered
               striped
             />
+          </div>
+
+          <div style={{ borderTop: '1px solid var(--dui-border)', paddingTop: 16 }}>
+            <h3 style={{ margin: '8px 0' }}>Table Examples</h3>
+            <div style={{ display: 'grid', gap: 12 }}>
+              <div style={{ display: 'flex', gap: 12, flexWrap: 'wrap' }}>
+                <Table dataSource={bigData.slice(0, 5)} columns={columns as any} size="small" />
+                <Table dataSource={bigData.slice(0, 5)} columns={columns as any} size="medium" />
+                <Table dataSource={bigData.slice(0, 5)} columns={columns as any} size="large" />
+              </div>
+              <div style={{ display: 'flex', gap: 12, flexWrap: 'wrap' }}>
+                <Table dataSource={bigData.slice(0, 5)} columns={columns as any} bordered />
+                <Table dataSource={bigData.slice(0, 5)} columns={columns as any} striped />
+              </div>
+              <div>
+                <Table
+                  dataSource={bigData}
+                  columns={columns as any}
+                  pagination={{ pageSize: 10, showTotal: true, showSizeChanger: true, pageSizeOptions: [5, 10, 20] }}
+                  onSortChange={(field, order) => console.log('sort change', field, order)}
+                />
+              </div>
+              <div>
+                <Table
+                  dataSource={bigData}
+                  columns={columns as any}
+                  rowKey="id"
+                  rowSelection={{
+                    type: 'checkbox',
+                    selectedRowKeys: checkboxSelected,
+                    onChange: (keys) => setCheckboxSelected(keys),
+                    getCheckboxProps: (rec: any) => ({ disabled: rec.name === 'Bob' })
+                  }}
+                />
+              </div>
+              <div>
+                <Table
+                  dataSource={bigData}
+                  columns={columns as any}
+                  rowKey="id"
+                  rowSelection={{
+                    type: 'radio',
+                    selectedRowKeys: radioSelected ? [radioSelected] : [],
+                    onChange: (keys) => setRadioSelected(keys[0] || null)
+                  }}
+                />
+              </div>
+              <div>
+                <Table
+                  dataSource={bigData}
+                  columns={columns as any}
+                  rowKey="id"
+                  expandable={{
+                    expandedRowKeys: expandedKeys,
+                    onExpand: (expanded, rec: any) => {
+                      setExpandedKeys(prev => expanded ? [...prev, rec.id] : prev.filter(k => k !== rec.id));
+                    },
+                    expandedRowRender: (rec: any) => (
+                      <div style={{ padding: 8 }}>
+                        <div><strong>Name:</strong> {rec.name}</div>
+                        <div><strong>Age:</strong> {rec.age}</div>
+                        <div><strong>Address:</strong> {rec.address}</div>
+                      </div>
+                    )
+                  }}
+                />
+              </div>
+              <div>
+                <Table
+                  dataSource={bigData}
+                  columns={columns as any}
+                  rowKey="id"
+                  pagination={{
+                    current: tablePage,
+                    pageSize: tablePageSize,
+                    total: bigData.length,
+                    showSizeChanger: true,
+                    pageSizeOptions: [5, 10, 20],
+                    showTotal: true,
+                    onChange: (p, ps) => { setTablePage(p); setTablePageSize(ps); }
+                  }}
+                />
+              </div>
+              <div>
+                <Table
+                  dataSource={bigData.slice(0, 10)}
+                  columns={columns as any}
+                  loading={true}
+                />
+              </div>
+            </div>
           </div>
         </div>
 

@@ -42,6 +42,7 @@ export interface TableProps<T> {
   rowSelection?: RowSelectionConfig<T>;
   expandable?: ExpandableConfig<T>;
   onRowClick?: (record: T, index: number) => void;
+  onSortChange?: (field: keyof T | null, order: 'asc' | 'desc' | null) => void;
   className?: string;
   style?: React.CSSProperties;
   size?: 'small' | 'medium' | 'large';

@@ -1,4 +1,4 @@
-import React, { useState, useMemo } from 'react';
+import React, { useState, useMemo, useEffect, useRef } from 'react';
 import { useConfig } from '../../config';
 import type { 
   TableProps, 
@@ -20,6 +20,7 @@ function Table<T extends Record<string, any>>({
   rowSelection,
   expandable,
   onRowClick,
+  onSortChange,
   className = '',
   style,
   size = 'medium',
@@ -29,10 +30,36 @@ function Table<T extends Record<string, any>>({
   const { locale } = useConfig();
   const [sortField, setSortField] = useState<keyof T | null>(null);
   const [sortOrder, setSortOrder] = useState<'asc' | 'desc' | null>(null);
-  const [currentPage, setCurrentPage] = useState(1);
-  const [pageSize, setPageSize] = useState(10);
+  const initialPage = typeof pagination === 'object' && pagination?.current ? pagination.current : 1;
+  const initialPageSize = typeof pagination === 'object' && pagination?.pageSize ? pagination.pageSize : 10;
+  const [currentPage, setCurrentPage] = useState(initialPage);
+  const [pageSize, setPageSize] = useState(initialPageSize);
   const [selectedRowKeys, setSelectedRowKeys] = useState<string[]>(rowSelection?.selectedRowKeys || []);
   const [expandedRowKeys, setExpandedRowKeys] = useState<string[]>(expandable?.expandedRowKeys || []);
+
+  // Dev warning for unstable row keys
+  useEffect(() => {
+    if (!rowKey) {
+      // eslint-disable-next-line no-console
+      console.warn('[Table] rowKey is not provided. Using index as key may be unstable when sorting/pagination.');
+    }
+  }, []);
+
+  // Sync controlled props
+  useEffect(() => {
+    if (typeof pagination === 'object') {
+      if (pagination.current && pagination.current !== currentPage) setCurrentPage(pagination.current);
+      if (pagination.pageSize && pagination.pageSize !== pageSize) setPageSize(pagination.pageSize);
+    }
+  }, [pagination && (pagination as any).current, pagination && (pagination as any).pageSize]);
+
+  useEffect(() => {
+    if (rowSelection?.selectedRowKeys) setSelectedRowKeys(rowSelection.selectedRowKeys);
+  }, [rowSelection && rowSelection.selectedRowKeys]);
+
+  useEffect(() => {
+    if (expandable?.expandedRowKeys) setExpandedRowKeys(expandable.expandedRowKeys);
+  }, [expandable && expandable.expandedRowKeys]);
 
   // 排序逻辑
   const sortedData = useMemo(() => {
@@ -103,6 +130,8 @@ function Table<T extends Record<string, any>>({
       setSortField(column.key);
       setSortOrder('asc');
     }
+    // Emit sort change
+    onSortChange?.(sortField === column.key ? sortField : column.key, sortField === column.key ? (sortOrder === 'asc' ? 'desc' : sortOrder === 'desc' ? null : 'asc') : 'asc');
   };
 
   // 处理行选择
@@ -152,14 +181,32 @@ function Table<T extends Record<string, any>>({
   const renderHeader = () => (
     <thead className={styles['table-header']}>
       <tr>
-        {rowSelection && (
+        {rowSelection && rowSelection.type === 'checkbox' && (
           <th className={styles['table-header-cell']}>
             <input
               type={rowSelection.type === 'radio' ? 'radio' : 'checkbox'}
-              checked={selectedRowKeys.length === dataSource.length && dataSource.length > 0}
+              ref={(el) => {
+                if (!el) return;
+                const selectableKeys = dataSource
+                  .map((rec, idx) => ({ rec, idx }))
+                  .filter(({ rec }) => !rowSelection.getCheckboxProps?.(rec)?.disabled)
+                  .map(({ rec, idx }) => getRowKey(rec, idx));
+                const isIndeterminate = selectedRowKeys.length > 0 && selectedRowKeys.length < selectableKeys.length;
+                el.indeterminate = isIndeterminate;
+              }}
+              checked={(function(){
+                const selectableKeys = dataSource
+                  .map((rec, idx) => ({ rec, idx }))
+                  .filter(({ rec }) => !rowSelection.getCheckboxProps?.(rec)?.disabled)
+                  .map(({ rec, idx }) => getRowKey(rec, idx));
+                return selectedRowKeys.length === selectableKeys.length && selectableKeys.length > 0;
+              })()}
               onChange={(e) => {
                 if (e.target.checked) {
-                  const allKeys = dataSource.map((_, index) => getRowKey(dataSource[index], index));
+                  const allKeys = dataSource
+                    .map((rec, idx) => ({ rec, idx }))
+                    .filter(({ rec }) => !rowSelection.getCheckboxProps?.(rec)?.disabled)
+                    .map(({ rec, idx }) => getRowKey(rec, idx));
                   setSelectedRowKeys(allKeys);
                   rowSelection.onChange?.(allKeys, dataSource);
                 } else {
@@ -179,6 +226,7 @@ function Table<T extends Record<string, any>>({
             }`}
             style={{ width: column.width }}
             onClick={() => handleSort(column)}
+            aria-sort={sortField === column.key ? (sortOrder === 'asc' ? 'ascending' : 'descending') : 'none'}
           >
             {column.title}
           </th>
@@ -225,6 +273,8 @@ function Table<T extends Record<string, any>>({
                   transform: isExpanded ? 'rotate(90deg)' : 'rotate(0deg)',
                   transition: 'transform 0.2s'
                 }}
+                aria-expanded={isExpanded}
+                aria-label={isExpanded ? 'Collapse row' : 'Expand row'}
               >
                 ▶
               </button>
