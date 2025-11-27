@@ -123,6 +123,10 @@ export default function App() {
               <Button variant="secondary">Secondary</Button>
               <Button variant="outline">Outline</Button>
               <Button variant="ghost">Ghost</Button>
+              <Button variant="danger">Danger</Button>
+              <Button variant="success">Success</Button>
+              <Button variant="warning">Warning</Button>
+              <Button variant="link">Link</Button>
             </div>
             <div style={{ display: 'flex', gap: 12, flexWrap: 'wrap', alignItems: 'center' }}>
               <Button size="small">Small</Button>
@@ -134,6 +138,7 @@ export default function App() {
               <Button loading>Loading</Button>
               <Button icon={<span>★</span>}>With Icon</Button>
               <Button loading icon={<span>★</span>}>Loading Icon</Button>
+              <Button iconOnly aria-label="Star" icon={<span>★</span>} />
             </div>
             <div>
               <Button block>Block</Button>

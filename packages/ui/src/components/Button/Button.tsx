@@ -9,12 +9,14 @@ export default function Button({
   block = false,
   loading = false,
   rounded = false,
+  iconOnly = false,
   icon,
   children,
   className = '',
   style,
   onClick,
   disabled,
+  type = 'button',
   ...rest
 }: ButtonProps) {
   const classes = [
@@ -23,6 +25,7 @@ export default function Button({
     styles[`button-${size}`],
     block ? styles['button-block'] : '',
     rounded ? styles['button-rounded'] : '',
+    iconOnly ? styles['button-icon-only'] : '',
     className
   ].filter(Boolean).join(' ');
 
@@ -32,6 +35,9 @@ export default function Button({
       style={style}
       onClick={onClick}
       disabled={disabled || loading}
+      aria-busy={loading || undefined}
+      aria-disabled={(disabled || loading) || undefined}
+      type={type}
       {...rest}
     >
       {loading && <span className={styles.spinner} aria-hidden />}
