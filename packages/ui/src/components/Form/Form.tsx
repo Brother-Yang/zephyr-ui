@@ -2,6 +2,7 @@ import React, { createContext, useCallback, useContext, useMemo, useRef, useStat
 import type { FormProps, FormItemProps, FormRule, FormApi } from '../../types/form';
 import styles from './Form.module.css';
 import '../../styles/variables.css';
+import { withPrefix } from '../../config/classPrefix';
 
 type AnyValues = Record<string, any>;
 
@@ -136,7 +137,7 @@ export default function Form<TValues extends AnyValues = AnyValues>({
     disabled,
   }), [values, errors, setFieldValue, getFieldValue, registerField, unregisterField, validateField, validateOnChange, validateOnBlur, layout, disabled]);
 
-  const classes = [styles.form, layout === 'horizontal' ? styles['form-horizontal'] : '', disabled ? styles.disabled : '', className]
+  const classes = [styles[withPrefix('form')], layout === 'horizontal' ? styles[withPrefix('form-horizontal')] : '', disabled ? styles[withPrefix('disabled')] : '', className]
     .filter(Boolean)
     .join(' ');
 
@@ -212,18 +213,18 @@ export function FormItem<TValues extends AnyValues = AnyValues>({
 
   const control = React.cloneElement(children, childProps);
 
-  const itemClasses = [styles.item, error ? styles['has-error'] : '', className].filter(Boolean).join(' ');
+  const itemClasses = [styles[withPrefix('item')], error ? styles[withPrefix('has-error')] : '', className].filter(Boolean).join(' ');
 
   return (
     <div ref={itemRef} className={itemClasses} style={style}>
       {label && (
-        <div className={styles.label}>
+        <div className={styles[withPrefix('label')]}> 
           {label}
-          {required && <span className={styles.asterisk}>*</span>}
+          {required && <span className={styles[withPrefix('asterisk')]}>*</span>}
         </div>
       )}
-      <div className={styles.control}>{control}</div>
-      <div className={styles.help} id={helpId}>{error || help || null}</div>
+      <div className={styles[withPrefix('control')]}>{control}</div>
+      <div className={styles[withPrefix('help')]} id={helpId}>{error || help || null}</div>
     </div>
   );
 }

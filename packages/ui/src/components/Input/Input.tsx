@@ -3,6 +3,7 @@ import type { InputProps } from '../../types/input';
 import styles from './Input.module.css';
 import '../../styles/variables.css';
 import { useConfig } from '../../config';
+import { withPrefix } from '../../config/classPrefix';
 
 const Input = forwardRef<HTMLInputElement, InputProps>(function Input(
 {
@@ -28,10 +29,10 @@ const Input = forwardRef<HTMLInputElement, InputProps>(function Input(
   const inputValue = isControlled ? value! : internal;
 
   const wrapperClasses = [
-    styles['input-wrapper'],
-    styles[`input-${size}`],
-    status !== 'default' ? styles[`status-${status}`] : '',
-    disabled ? styles.disabled : '',
+    styles[withPrefix('input-wrapper')],
+    styles[withPrefix(`input-${size}`)],
+    status !== 'default' ? styles[withPrefix(`status-${status}`)] : '',
+    disabled ? styles[withPrefix('disabled')] : '',
     className,
   ].filter(Boolean).join(' ');
 
@@ -52,9 +53,9 @@ const Input = forwardRef<HTMLInputElement, InputProps>(function Input(
 
   return (
     <div className={wrapperClasses} style={style}>
-      {prefix && <span className={styles.prefix}>{prefix}</span>}
+      {prefix && <span className={styles[withPrefix('prefix')]}>{prefix}</span>}
       <input
-        className={styles.input}
+        className={styles[withPrefix('input')]}
         ref={ref}
         value={inputValue}
         onChange={handleChange}
@@ -67,14 +68,14 @@ const Input = forwardRef<HTMLInputElement, InputProps>(function Input(
       {allowClear && inputValue && !disabled && (
         <button
           type="button"
-          className={styles.clear}
+          className={styles[withPrefix('clear')]}
           onClick={() => { if (!isControlled) setInternal(''); onChange?.(''); onClear?.(); }}
           aria-label={locale?.input?.clear ?? 'Clear'}
         >
           ×
         </button>
       )}
-      {suffix && <span className={styles.suffix}>{suffix}</span>}
+      {suffix && <span className={styles[withPrefix('suffix')]}>{suffix}</span>}
     </div>
   );
 });

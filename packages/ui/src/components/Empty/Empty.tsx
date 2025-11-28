@@ -1,6 +1,7 @@
 import React from 'react';
 import styles from './Empty.module.css';
 import '../../styles/variables.css';
+import { withPrefix } from '../../config/classPrefix';
 
 export interface EmptyProps {
   icon?: React.ReactNode;
@@ -13,12 +14,12 @@ export interface EmptyProps {
 }
 
 export default function Empty({ icon, description, actions, size = 'medium', className = '', style, children }: EmptyProps) {
-  const classes = [styles.empty, styles[size], className].filter(Boolean).join(' ');
+  const classes = [styles[withPrefix('empty')], styles[withPrefix(size)], className].filter(Boolean).join(' ');
   return (
     <div className={classes} style={style} role="status" aria-live="polite">
-      {icon && <div className={styles.icon} aria-hidden>{icon}</div>}
-      <div className={styles.text}>{children ?? description ?? 'Empty'}</div>
-      {actions && <div className={styles.actions}>{actions}</div>}
+      {icon && <div className={styles[withPrefix('icon')]} aria-hidden>{icon}</div>}
+      <div className={styles[withPrefix('text')]}>{children ?? description ?? 'Empty'}</div>
+      {actions && <div className={styles[withPrefix('actions')]}>{actions}</div>}
     </div>
   );
 }

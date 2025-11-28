@@ -57,13 +57,13 @@
     - 'examples/*'
   ```
 - 根 `package.json`：
-  - `scripts.build`：`pnpm -F @demo/ui build`
+  - `scripts.build`：`pnpm -F @zephyr-ui/ui build`
   - `scripts.dev`：`pnpm -F example dev`
-  - `scripts.test`：`pnpm -F @demo/ui test`
+  - `scripts.test`：`pnpm -F @zephyr-ui/ui test`
 
 ## 组件库（packages/ui）
 - `package.json`：
-  - 包名：`@demo/ui`
+  - 包名：`@zephyr-ui/ui`
   - 输出：`dist/index.es.js`、`dist/index.cjs.js`、`dist/index.d.ts`、`style.css`
   - `peerDependencies`：`react`、`react-dom`
   - `devDependencies`：`vite`、`vite-plugin-dts`、`typescript`、`vitest`、`@vitejs/plugin-react`
@@ -90,7 +90,7 @@
 
 ## 示例应用（examples/react-vite）
 - `package.json`：
-  - 依赖库：`"@demo/ui": "file:../../packages/ui"`
+  - 依赖库：`"@zephyr-ui/ui": "file:../../packages/ui"`
   - `scripts`：`dev`/`build`（Vite）
 - `vite.config.ts`：React 插件，`server.port = 5173`
 - 入口（`src/main.tsx`）：在渲染前调用 `configureStyle({ prefix: 'myapp' })`
@@ -109,7 +109,7 @@
 - `pnpm install`
 - `pnpm dev`
 - `pnpm build`
-- `pnpm -F @demo/ui test`
+- `pnpm -F @zephyr-ui/ui test`
 
 ## 约定与规范
 - CSS 类统一采用前缀化：`${prefix}-<component>`，默认前缀为 `dui`

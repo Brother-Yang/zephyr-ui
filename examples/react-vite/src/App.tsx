@@ -16,7 +16,7 @@ import {
   Form,
   FormItem,
   Empty
-} from '@demo/ui';
+} from '@zephyr-ui/ui';
 
 export default function App() {
   const [dark, setDark] = useState(false);

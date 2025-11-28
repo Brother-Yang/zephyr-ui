@@ -1,4 +1,4 @@
-.empty {
+.zephyr-empty {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -9,10 +9,10 @@
   text-align: center;
 }
 
-.icon { font-size: 24px; line-height: 1; }
-.text { font-size: var(--font-size-sm); }
-.actions { display: inline-flex; gap: var(--spacing-sm); }
+.zephyr-icon { font-size: 24px; line-height: 1; }
+.zephyr-text { font-size: var(--font-size-sm); }
+.zephyr-actions { display: inline-flex; gap: var(--spacing-sm); }
 
-.small { min-height: 60px; }
-.medium { min-height: 80px; }
-.large { min-height: 120px; }
+.zephyr-small { min-height: 60px; }
+.zephyr-medium { min-height: 80px; }
+.zephyr-large { min-height: 120px; }

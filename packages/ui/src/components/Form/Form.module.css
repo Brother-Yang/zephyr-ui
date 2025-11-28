@@ -1,16 +1,16 @@
-.form {
+.zephyr-form {
   display: grid;
   gap: var(--spacing-md);
 }
 
-.form-horizontal .item {
+.zephyr-form-horizontal .zephyr-item {
   display: grid;
   grid-template-columns: 160px 1fr;
   align-items: center;
   column-gap: var(--spacing-md);
 }
 
-.item {
+.zephyr-item {
   padding: 0;
   border: none;
   border-radius: 0;
@@ -18,7 +18,7 @@
   box-shadow: none;
 }
 
-.label {
+.zephyr-label {
   display: flex;
   align-items: center;
   gap: var(--spacing-xs);
@@ -26,21 +26,21 @@
   font-weight: var(--font-weight-medium);
   margin-bottom: var(--spacing-xs);
 }
-.form-horizontal .label { margin-bottom: 0; }
-.asterisk { color: var(--color-error); font-weight: var(--font-weight-semibold); }
+.zephyr-form-horizontal .zephyr-label { margin-bottom: 0; }
+.zephyr-asterisk { color: var(--color-error); font-weight: var(--font-weight-semibold); }
 
-.control {
+.zephyr-control {
   display: block;
 }
 
-.help {
+.zephyr-help {
   color: var(--color-error);
   font-size: var(--font-size-xs);
   margin-top: var(--spacing-xs);
   min-height: 18px;
 }
-.form-horizontal .help { grid-column: 2; }
+.zephyr-form-horizontal .zephyr-help { grid-column: 2; }
 
-.disabled { opacity: 0.6; pointer-events: none; }
+.zephyr-disabled { opacity: 0.6; pointer-events: none; }
 
-.has-error .label { color: var(--color-error); }
+.zephyr-has-error .zephyr-label { color: var(--color-error); }

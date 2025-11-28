@@ -1,4 +1,4 @@
-.button {
+.zephyr-button {
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -16,100 +16,100 @@
   box-shadow: var(--shadow-small);
 }
 
-.button:hover {
+.zephyr-button:hover {
   background-color: var(--color-surface-hover);
   border-color: var(--color-border-hover);
 }
 
-.button:focus-visible {
+.zephyr-button:focus-visible {
   outline: none;
   box-shadow: 0 0 0 3px var(--color-primary-light);
 }
 
-.button:disabled {
+.zephyr-button:disabled {
   cursor: not-allowed;
   opacity: 0.6;
 }
 
 /* Variants */
-.button-primary {
+.zephyr-button-primary {
   background-color: var(--color-primary);
   color: #ffffff;
   border-color: var(--color-primary);
 }
-.button-primary:hover {
+.zephyr-button-primary:hover {
   background-color: var(--color-primary-hover);
 }
 
-.button-secondary {
+.zephyr-button-secondary {
   background-color: var(--color-background);
   color: var(--color-text);
 }
 
-.button-outline {
+.zephyr-button-outline {
   background-color: transparent;
   color: var(--color-text);
 }
-.button-outline:hover {
+.zephyr-button-outline:hover {
   border-color: var(--color-border-hover);
 }
 
-.button-ghost {
+.zephyr-button-ghost {
   background-color: transparent;
   color: var(--color-text);
   border-color: transparent;
   box-shadow: none;
 }
-.button-ghost:hover {
+.zephyr-button-ghost:hover {
   background-color: var(--color-surface-hover);
 }
 
-.button-danger {
+.zephyr-button-danger {
   background-color: var(--color-error);
   color: #ffffff;
   border-color: var(--color-error);
 }
-.button-danger:hover {
+.zephyr-button-danger:hover {
   background-color: #c53030;
 }
 
-.button-success {
+.zephyr-button-success {
   background-color: var(--color-success);
   color: #ffffff;
   border-color: var(--color-success);
 }
-.button-success:hover {
+.zephyr-button-success:hover {
   background-color: #2f855a;
 }
 
-.button-warning {
+.zephyr-button-warning {
   background-color: var(--color-warning);
   color: #1a202c;
   border-color: var(--color-warning);
 }
-.button-warning:hover {
+.zephyr-button-warning:hover {
   filter: brightness(0.95);
 }
 
-.button-link {
+.zephyr-button-link {
   background-color: transparent;
   color: var(--color-primary);
   border-color: transparent;
   box-shadow: none;
 }
-.button-link:hover {
+.zephyr-button-link:hover {
   text-decoration: underline;
 }
 /* Sizes */
-.button-small { min-height: var(--button-height-sm); padding: 0 var(--button-padding-inline-sm); font-size: var(--font-size-xs); }
-.button-medium { min-height: var(--button-height-md); padding: 0 var(--button-padding-inline-md); font-size: var(--font-size-sm); }
-.button-large { min-height: var(--button-height-lg); padding: 0 var(--button-padding-inline-lg); font-size: var(--font-size-base); }
+.zephyr-button-small { min-height: var(--button-height-sm); padding: 0 var(--button-padding-inline-sm); font-size: var(--font-size-xs); }
+.zephyr-button-medium { min-height: var(--button-height-md); padding: 0 var(--button-padding-inline-md); font-size: var(--font-size-sm); }
+.zephyr-button-large { min-height: var(--button-height-lg); padding: 0 var(--button-padding-inline-lg); font-size: var(--font-size-base); }
 
 /* Block */
-.button-block { width: 100%; }
+.zephyr-button-block { width: 100%; }
 
 /* Loading spinner */
-.spinner {
+.zephyr-button-spinner {
   width: var(--spinner-size-md);
   height: var(--spinner-size-md);
   border: 2px solid currentColor;
@@ -118,13 +118,13 @@
   animation: spin 0.8s linear infinite;
 }
 
-.button-small .spinner { width: var(--spinner-size-sm); height: var(--spinner-size-sm); }
-.button-large .spinner { width: var(--spinner-size-lg); height: var(--spinner-size-lg); }
+.zephyr-button-small .zephyr-button-spinner { width: var(--spinner-size-sm); height: var(--spinner-size-sm); }
+.zephyr-button-large .zephyr-button-spinner { width: var(--spinner-size-lg); height: var(--spinner-size-lg); }
 
 @keyframes spin {
   to { transform: rotate(360deg); }
 }
 
 /* Rounded */
-.button-rounded { border-radius: var(--radius-full); }
-.button-icon-only { gap: 0; }
+.zephyr-button-rounded { border-radius: var(--radius-full); }
+.zephyr-button-icon-only { gap: 0; }

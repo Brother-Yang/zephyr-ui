@@ -1,6 +1,6 @@
 /* Table Component Styles */
 
-.table {
+.zephyr-table {
   width: 100%;
   border-collapse: collapse;
   background-color: var(--color-background);
@@ -9,18 +9,18 @@
   box-shadow: none;
 }
 
-.table:hover { box-shadow: none; }
+.zephyr-table:hover { box-shadow: none; }
 
-.table-bordered {
+.zephyr-table-bordered {
   border: 1px solid var(--color-border);
 }
 
-.table-bordered .table-cell {
+.zephyr-table-bordered .zephyr-table-cell {
   border: 1px solid var(--color-border);
 }
 
 /* Table Header */
-.table-header {
+.zephyr-table-header {
   background-color: var(--color-background);
   font-weight: var(--font-weight-medium);
   color: var(--color-text);
@@ -28,23 +28,23 @@
   text-align: left;
 }
 
-.table-header-cell {
+.zephyr-table-header-cell {
   padding: var(--spacing-md);
   border-bottom: 1px solid var(--color-border);
   position: relative;
   user-select: none;
 }
 
-.table-header-cell.sortable {
+.zephyr-table-header-cell.zephyr-sortable {
   cursor: pointer;
   transition: background-color var(--transition-fast);
 }
 
-.table-header-cell.sortable:hover {
+.zephyr-table-header-cell.zephyr-sortable:hover {
   background-color: var(--color-surface-hover);
 }
 
-.table-header-cell.sortable::after {
+.zephyr-table-header-cell.zephyr-sortable::after {
   content: '';
   position: absolute;
   right: var(--spacing-sm);
@@ -59,44 +59,44 @@
   transition: opacity var(--transition-fast);
 }
 
-.table-header-cell.sortable:hover::after {
+.zephyr-table-header-cell.zephyr-sortable:hover::after {
   opacity: 0.6;
 }
 
-.table-header-cell.sortable.asc::after {
+.zephyr-table-header-cell.zephyr-sortable.zephyr-asc::after {
   border-bottom-color: var(--color-primary);
   opacity: 1;
 }
 
-.table-header-cell.sortable.desc::after {
+.zephyr-table-header-cell.zephyr-sortable.zephyr-desc::after {
   border-bottom: none;
   border-top: 6px solid var(--color-primary);
   opacity: 1;
 }
 
 /* Table Body */
-.table-body {
+.zephyr-table-body {
   background-color: var(--color-background);
 }
 
-.table-row {
+.zephyr-table-row {
   transition: background-color var(--transition-fast);
   border-bottom: 1px solid var(--color-border);
 }
 
-.table-row:hover {
+.zephyr-table-row:hover {
   background-color: var(--color-surface-hover);
 }
 
-.table-row.striped:nth-child(even) {
+.zephyr-table-row.zephyr-striped:nth-child(even) {
   background-color: var(--color-surface);
 }
 
-.table-row.striped:nth-child(even):hover {
+.zephyr-table-row.zephyr-striped:nth-child(even):hover {
   background-color: var(--color-surface-hover);
 }
 
-.table-cell {
+.zephyr-table-cell {
   padding: var(--spacing-md);
   color: var(--color-text);
   font-size: var(--font-size-sm);
@@ -104,25 +104,25 @@
 }
 
 /* Table Size Variants */
-.table-small .table-header-cell,
-.table-small .table-cell {
+.zephyr-table-small .zephyr-table-header-cell,
+.zephyr-table-small .zephyr-table-cell {
   padding: var(--spacing-sm);
   font-size: var(--font-size-xs);
 }
 
-.table-large .table-header-cell,
-.table-large .table-cell {
+.zephyr-table-large .zephyr-table-header-cell,
+.zephyr-table-large .zephyr-table-cell {
   padding: var(--spacing-lg);
   font-size: var(--font-size-base);
 }
 
 /* Loading State */
-.table-loading {
+.zephyr-table-loading {
   position: relative;
   pointer-events: none;
 }
 
-.table-loading::after {
+.zephyr-table-loading::after {
   content: '';
   position: absolute;
   top: 0;
@@ -136,7 +136,7 @@
   z-index: 1;
 }
 
-.loading-spinner {
+.zephyr-loading-spinner {
   position: absolute;
   top: 50%;
   left: 50%;
@@ -156,7 +156,7 @@
 }
 
 /* Pagination */
-.pagination {
+.zephyr-pagination {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -165,7 +165,7 @@
   padding: var(--spacing-md);
 }
 
-.pagination-item {
+.zephyr-pagination-item {
   padding: var(--spacing-sm) var(--spacing-md);
   border: 1px solid var(--color-border);
   background-color: transparent;
@@ -177,31 +177,29 @@
   font-size: var(--font-size-sm);
 }
 
-.pagination-item:hover { background-color: var(--color-surface); border-color: var(--color-border-hover); }
-
-.pagination-item.active { background-color: transparent; color: var(--color-primary); border-color: var(--color-primary); }
-
-.pagination-item.disabled { color: var(--color-text-disabled); cursor: not-allowed; background-color: transparent; }
-.pagination-item.disabled:hover { background-color: transparent; border-color: var(--color-border); }
+.zephyr-pagination-item:hover { background-color: var(--color-surface); border-color: var(--color-border-hover); }
+.zephyr-pagination-item.zephyr-active { background-color: transparent; color: var(--color-primary); border-color: var(--color-primary); }
+.zephyr-pagination-item.zephyr-disabled { color: var(--color-text-disabled); cursor: not-allowed; background-color: transparent; }
+.zephyr-pagination-item.zephyr-disabled:hover { background-color: transparent; border-color: var(--color-border); }
 
 /* Row Selection */
-.table-row.selected { background-color: var(--color-primary-light); }
-.table-row.selected:hover { background-color: var(--color-primary-light); }
+.zephyr-table-row.zephyr-selected { background-color: var(--color-primary-light); }
+.zephyr-table-row.zephyr-selected:hover { background-color: var(--color-primary-light); }
 
 /* Responsive */
 @media (max-width: 768px) {
-  .table-header-cell,
-  .table-cell {
+  .zephyr-table-header-cell,
+  .zephyr-table-cell {
     padding: var(--spacing-sm);
     font-size: var(--font-size-xs);
   }
   
-  .pagination {
+  .zephyr-pagination {
     flex-wrap: wrap;
     gap: var(--spacing-xs);
   }
   
-  .pagination-item {
+  .zephyr-pagination-item {
     padding: var(--spacing-xs) var(--spacing-sm);
     font-size: var(--font-size-xs);
   }

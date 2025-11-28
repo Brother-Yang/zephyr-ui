@@ -3,6 +3,7 @@ import { useConfig } from '../../config';
 import type { SelectProps } from '../../types/select';
 import styles from './Select.module.css';
 import '../../styles/variables.css';
+import { withPrefix } from '../../config/classPrefix';
 
 export default function Select<T extends string | number = string | number>({
   options,
@@ -26,7 +27,13 @@ export default function Select<T extends string | number = string | number>({
   const currentSingle = (!multiple ? (internal as T | undefined) : undefined);
   const currentMulti = (multiple ? (internal as T[] | undefined) || [] : []);
 
-  const classes = [styles.select, styles[`select-${size}`], disabled ? styles.disabled : '', multiple ? styles.multiple : '', className]
+  const classes = [
+    styles[withPrefix('select')],
+    styles[withPrefix(`select-${size}`)],
+    disabled ? styles[withPrefix('disabled')] : '',
+    multiple ? styles[withPrefix('multiple')] : '',
+    className
+  ]
     .filter(Boolean)
     .join(' ');
 
@@ -65,22 +72,23 @@ export default function Select<T extends string | number = string | number>({
   if (multiple) {
     return (
       <div ref={rootRef} className={classes} style={{ position: 'relative', ...style }}>
-        <div className={styles.chips} onClick={() => !disabled && setOpen(o => !o)}>
+        <div className={styles[withPrefix('chips')]} onClick={() => !disabled && setOpen(o => !o)}>
           {selectedOptions.length === 0 && (
-            <span className={styles.placeholder}>{placeholder || locale.select.placeholderMultiple}</span>
+            <span className={styles[withPrefix('placeholder')]}>{placeholder || locale.select.placeholderMultiple}</span>
           )}
           {selectedOptions.map(opt => (
-            <span key={String(opt.value)} className={styles.chip}>
+            <span key={String(opt.value)} className={styles[withPrefix('chip')]}
+            >
               {opt.label}
               <button type="button" aria-label={locale.select.remove || 'Remove'} onClick={(e) => { e.stopPropagation(); toggleOption(opt); }}>×</button>
             </span>
           ))}
         </div>
-        <button type="button" className={styles.caret} onClick={() => !disabled && setOpen(o => !o)} disabled={disabled}>▾</button>
+        <button type="button" className={styles[withPrefix('caret')]} onClick={() => !disabled && setOpen(o => !o)} disabled={disabled}>▾</button>
         {open && (
-          <div className={styles.dropdown} role="listbox" aria-multiselectable id={`${idRef.current}-listbox`}>
+          <div className={styles[withPrefix('dropdown')]} role="listbox" aria-multiselectable id={`${idRef.current}-listbox`}>
             {options.length === 0 && (
-              <div className={styles.item} aria-disabled>{locale.select.noOptions || 'No options'}</div>
+              <div className={styles[withPrefix('item')]} aria-disabled>{locale.select.noOptions || 'No options'}</div>
             )}
             {options.map(opt => {
               const selected = currentMulti.some(v => String(v) === String(opt.value));
@@ -89,7 +97,7 @@ export default function Select<T extends string | number = string | number>({
                   key={String(opt.value)}
                   role="option"
                   aria-selected={selected}
-                  className={`${styles.item} ${selected ? styles.selected : ''} ${opt.disabled ? styles.disabled : ''}`}
+                  className={`${styles[withPrefix('item')]} ${selected ? styles[withPrefix('selected')] : ''} ${opt.disabled ? styles[withPrefix('disabled')] : ''}`}
                   onClick={() => toggleOption(opt)}
                 >
                   <input type="checkbox" checked={selected} readOnly />
@@ -146,27 +154,27 @@ export default function Select<T extends string | number = string | number>({
       {...rest}
     >
       <div
-        className={styles.display}
+        className={styles[withPrefix('display')]}
         onClick={(e) => { e.stopPropagation(); if (!disabled) setOpen(o => !o); }}
       >
         {selectedLabel === undefined ? (
-          <span className={styles.placeholder}>{placeholder || locale.select.placeholder}</span>
+          <span className={styles[withPrefix('placeholder')]}>{placeholder || locale.select.placeholder}</span>
         ) : (
-          <span className={styles.value}>{selectedLabel}</span>
+          <span className={styles[withPrefix('value')]}>{selectedLabel}</span>
         )}
       </div>
       <button
         type="button"
-        className={styles.caret}
+        className={styles[withPrefix('caret')]}
         onClick={(e) => { e.stopPropagation(); if (!disabled) setOpen(o => !o); }}
         disabled={disabled}
       >
         ▾
       </button>
       {open && (
-        <div className={styles.dropdown} role="listbox" id={`${idRef.current}-listbox`}>
+        <div className={styles[withPrefix('dropdown')]} role="listbox" id={`${idRef.current}-listbox`}>
           {options.length === 0 && (
-            <div className={styles.item} aria-disabled>{locale.select.noOptions || 'No options'}</div>
+            <div className={styles[withPrefix('item')]} aria-disabled>{locale.select.noOptions || 'No options'}</div>
           )}
           {options.map((opt, i) => {
             const selected = String(opt.value) === String(currentSingle);
@@ -176,7 +184,7 @@ export default function Select<T extends string | number = string | number>({
                 role="option"
                 aria-selected={selected}
                 id={`${idRef.current}-option-${i}`}
-                className={`${styles.item} ${selected ? styles.selected : ''} ${opt.disabled ? styles.disabled : ''} ${activeIndex === i ? styles.active : ''}`}
+                className={`${styles[withPrefix('item')]} ${selected ? styles[withPrefix('selected')] : ''} ${opt.disabled ? styles[withPrefix('disabled')] : ''} ${activeIndex === i ? styles[withPrefix('active')] : ''}`}
                 onClick={() => {
                   if (opt.disabled) return;
                   setValue(opt.value as T);

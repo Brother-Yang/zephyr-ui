@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import type { RadioProps } from '../../types/radio';
 import styles from './Radio.module.css';
 import '../../styles/variables.css';
+import { withPrefix } from '../../config/classPrefix';
 
 export default function Radio<T extends string | number = string | number>({
   checked,
@@ -23,10 +24,17 @@ export default function Radio<T extends string | number = string | number>({
   const [internal, setInternal] = useState<boolean>(defaultChecked || false);
   const current = isControlled ? checked! : internal;
 
-  const rootClasses = [styles.radio, styles[size], disabled ? styles.disabled : '', readOnly ? styles.readonly : '', status ? styles[status] : '', className]
+  const rootClasses = [
+    styles[withPrefix('radio')],
+    styles[withPrefix(size)],
+    disabled ? styles[withPrefix('disabled')] : '',
+    readOnly ? styles[withPrefix('readonly')] : '',
+    status ? styles[withPrefix(status)] : '',
+    className
+  ]
     .filter(Boolean)
     .join(' ');
-  const boxClasses = [styles.box, current ? styles.checked : ''].filter(Boolean).join(' ');
+  const boxClasses = [styles[withPrefix('box')], current ? styles[withPrefix('checked')] : ''].filter(Boolean).join(' ');
 
   const toggle = () => {
     if (disabled || readOnly) return;
@@ -49,7 +57,7 @@ export default function Radio<T extends string | number = string | number>({
       <span className={boxClasses}>
         <input
           type="radio"
-          className={styles.input}
+          className={styles[withPrefix('input')]}
           checked={current}
           onChange={toggle}
           disabled={disabled}
@@ -58,9 +66,9 @@ export default function Radio<T extends string | number = string | number>({
           aria-setsize={ariaSetsize}
           {...rest}
         />
-        <span className={styles.dot} />
+        <span className={styles[withPrefix('dot')]} />
       </span>
-      {label && <span className={styles.label}>{label}</span>}
+      {label && <span className={styles[withPrefix('label')]}>{label}</span>}
     </label>
   );
 }

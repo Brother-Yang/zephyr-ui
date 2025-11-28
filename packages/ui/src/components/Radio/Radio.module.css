@@ -1,11 +1,11 @@
-.radio {
+.zephyr-radio {
   display: inline-flex;
   align-items: center;
   gap: var(--spacing-sm);
   color: var(--color-text);
 }
 
-.box {
+.zephyr-box {
   width: 18px;
   height: 18px;
   border: 1px solid var(--color-border);
@@ -18,9 +18,9 @@
   position: relative;
 }
 
-.box:focus-within { box-shadow: 0 0 0 3px var(--color-primary-light); }
+.zephyr-box:focus-within { box-shadow: 0 0 0 3px var(--color-primary-light); }
 
-.input {
+.zephyr-input {
   appearance: none;
   -webkit-appearance: none;
   width: 18px;
@@ -29,9 +29,9 @@
   cursor: pointer;
 }
 
-.input:focus-visible { outline: none; }
+.zephyr-input:focus-visible { outline: none; }
 
-.dot {
+.zephyr-dot {
   position: absolute;
   left: 50%;
   top: 50%;
@@ -43,21 +43,21 @@
   display: none;
 }
 
-.checked .dot { display: inline-block; }
+.zephyr-checked .zephyr-dot { display: inline-block; }
 
-.label { color: var(--color-text); }
-.disabled { opacity: 0.6; cursor: not-allowed; }
-.readonly { opacity: 0.8; cursor: default; }
-.error .box { border-color: var(--color-error); }
-.error .label { color: var(--color-error); }
+.zephyr-label { color: var(--color-text); }
+.zephyr-disabled { opacity: 0.6; cursor: not-allowed; }
+.zephyr-readonly { opacity: 0.8; cursor: default; }
+.zephyr-error .zephyr-box { border-color: var(--color-error); }
+.zephyr-error .zephyr-label { color: var(--color-error); }
 
-.small .box { width: 16px; height: 16px; }
-.small .input { width: 16px; height: 16px; }
-.small .dot { width: 8px; height: 8px; }
+.zephyr-small .zephyr-box { width: 16px; height: 16px; }
+.zephyr-small .zephyr-input { width: 16px; height: 16px; }
+.zephyr-small .zephyr-dot { width: 8px; height: 8px; }
 
-.large .box { width: 22px; height: 22px; }
-.large .input { width: 22px; height: 22px; }
-.large .dot { width: 12px; height: 12px; }
+.zephyr-large .zephyr-box { width: 22px; height: 22px; }
+.zephyr-large .zephyr-input { width: 22px; height: 22px; }
+.zephyr-large .zephyr-dot { width: 12px; height: 12px; }
 
-.group { display: flex; gap: var(--spacing-md); }
-.vertical { flex-direction: column; }
+.zephyr-group { display: flex; gap: var(--spacing-md); }
+.zephyr-vertical { flex-direction: column; }

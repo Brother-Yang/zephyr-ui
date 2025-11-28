@@ -6,9 +6,9 @@
   "description": "Workspace root",
   "type": "module",
   "scripts": {
-    "build": "pnpm -F @demo/ui build",
+    "build": "pnpm -F @zephyr-ui/ui build",
     "dev": "pnpm -F example dev",
-    "test": "pnpm -F @demo/ui test",
+    "test": "pnpm -F @zephyr-ui/ui test",
     "lint": "eslint ."
   },
   "dependencies": {

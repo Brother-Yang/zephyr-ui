@@ -2,6 +2,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import type { CheckboxProps } from '../../types/checkbox';
 import styles from './Checkbox.module.css';
 import '../../styles/variables.css';
+import { withPrefix } from '../../config/classPrefix';
 
 export default function Checkbox({
   checked,
@@ -25,8 +26,8 @@ export default function Checkbox({
 
   const currentChecked = isControlled ? checked! : internalChecked;
 
-  const rootClasses = [styles.checkbox, styles[`checkbox-${size}`], disabled ? styles.disabled : '', className].filter(Boolean).join(' ');
-  const boxClasses = [styles.box, currentChecked ? styles.checked : '', indeterminate ? styles.indeterminate : '']
+  const rootClasses = [styles[withPrefix('checkbox')], styles[withPrefix(`checkbox-${size}`)], disabled ? styles[withPrefix('disabled')] : '', className].filter(Boolean).join(' ');
+  const boxClasses = [styles[withPrefix('box')], currentChecked ? styles[withPrefix('checked')] : '', indeterminate ? styles[withPrefix('indeterminate')] : '']
     .filter(Boolean)
     .join(' ');
 
@@ -48,15 +49,15 @@ export default function Checkbox({
         <input
           ref={inputRef}
           type="checkbox"
-          className={styles.input}
+          className={styles[withPrefix('input')]}
           checked={currentChecked}
           onChange={handleChange}
           disabled={disabled}
           {...rest}
         />
-        {(currentChecked || indeterminate) && <span className={styles.tick}>{indeterminate ? '−' : '✓'}</span>}
+        {(currentChecked || indeterminate) && <span className={styles[withPrefix('tick')]}>{indeterminate ? '−' : '✓'}</span>}
       </span>
-      {label && <span className={styles.label}>{label}</span>}
+      {label && <span className={styles[withPrefix('label')]}>{label}</span>}
     </label>
   );
 }

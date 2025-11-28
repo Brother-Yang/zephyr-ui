@@ -1,11 +1,11 @@
-.checkbox {
+.zephyr-checkbox {
   display: inline-flex;
   align-items: center;
   gap: var(--spacing-sm);
   color: var(--color-text);
 }
 
-.box {
+.zephyr-box {
   width: 18px;
   height: 18px;
   border: 1px solid var(--color-border);
@@ -17,11 +17,11 @@
   transition: all var(--transition-medium);
 }
 
-.box:focus-within {
+.zephyr-box:focus-within {
   box-shadow: 0 0 0 3px var(--color-primary-light);
 }
 
-.input {
+.zephyr-input {
   appearance: none;
   -webkit-appearance: none;
   width: 18px;
@@ -30,28 +30,28 @@
   cursor: pointer;
 }
 
-.input:focus-visible { outline: none; }
+.zephyr-input:focus-visible { outline: none; }
 
-.checked {
+.zephyr-checked {
   background-color: var(--color-primary);
   border-color: var(--color-primary);
 }
 
-.indeterminate {
+.zephyr-indeterminate {
   background-color: var(--color-primary);
   border-color: var(--color-primary);
 }
 
-.tick {
+.zephyr-tick {
   color: #ffffff;
   font-size: 14px;
   line-height: 1;
 }
 
-.label { color: var(--color-text); }
-.disabled { opacity: 0.6; cursor: not-allowed; }
+.zephyr-label { color: var(--color-text); }
+.zephyr-disabled { opacity: 0.6; cursor: not-allowed; }
 
 /* Sizes */
-.checkbox-small .box, .checkbox-small .input { width: 16px; height: 16px; }
-.checkbox-medium .box, .checkbox-medium .input { width: 18px; height: 18px; }
-.checkbox-large .box, .checkbox-large .input { width: 22px; height: 22px; }
+.zephyr-checkbox-small .zephyr-box, .zephyr-checkbox-small .zephyr-input { width: 16px; height: 16px; }
+.zephyr-checkbox-medium .zephyr-box, .zephyr-checkbox-medium .zephyr-input { width: 18px; height: 18px; }
+.zephyr-checkbox-large .zephyr-box, .zephyr-checkbox-large .zephyr-input { width: 22px; height: 22px; }
