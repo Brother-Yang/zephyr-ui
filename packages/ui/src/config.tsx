@@ -53,9 +53,12 @@ export const zhCN: Locale = {
   input: { clear: '清除' }
 };
 
+type DesignTokens = Record<string, string | number>;
+
 type ConfigContextValue = {
   theme: ThemeMode;
   locale: Locale;
+  tokens?: DesignTokens;
 };
 
 const ConfigContext = createContext<ConfigContextValue>({ theme: 'light', locale: enUS });
@@ -93,11 +96,21 @@ function applyThemeClass(theme: ThemeMode) {
   root.setAttribute('data-theme', effective);
 }
 
-export function ConfigProvider({ theme = 'light', locale = enUS, children }: { theme?: ThemeMode; locale?: Partial<Locale> | Locale; children: React.ReactNode }) {
+function applyDesignTokens(tokens?: DesignTokens) {
+  if (!tokens) return;
+  const root = document.documentElement;
+  Object.entries(tokens).forEach(([key, value]) => {
+    const varName = key.startsWith('--') ? key : `--${key}`;
+    root.style.setProperty(varName, String(value));
+  });
+}
+
+export function ConfigProvider({ theme = 'light', locale = enUS, tokens, children }: { theme?: ThemeMode; locale?: Partial<Locale> | Locale; tokens?: DesignTokens; children: React.ReactNode }) {
   const resolvedLocale = useMemo(() => mergeLocale(enUS, locale), [locale]);
 
   useEffect(() => {
     applyThemeClass(theme);
+    applyDesignTokens(tokens);
     let media: MediaQueryList | null = null;
     let handler: ((ev: MediaQueryListEvent) => void) | null = null;
     if (theme === 'system' && window.matchMedia) {
@@ -108,10 +121,10 @@ export function ConfigProvider({ theme = 'light', locale = enUS, children }: { t
     return () => {
       if (media && handler) media.removeEventListener?.('change', handler);
     };
-  }, [theme]);
+  }, [theme, tokens && JSON.stringify(tokens)]);
 
   return (
-    <ConfigContext.Provider value={{ theme, locale: resolvedLocale }}>
+    <ConfigContext.Provider value={{ theme, locale: resolvedLocale, tokens }}>
       {children}
     </ConfigContext.Provider>
   );
