@@ -21,6 +21,7 @@ import {
   Timeline,
   Tooltip
 } from '@zephyr-ui/ui';
+import { Rate } from '@zephyr-ui/ui';
 
 export default function App() {
   const [dark, setDark] = useState(false);
@@ -67,6 +68,7 @@ export default function App() {
   const [switchB, setSwitchB] = useState(true);
   const [dpSingle, setDpSingle] = useState<Date | null>(null);
   const [dpRange, setDpRange] = useState<[Date, Date] | null>(null);
+  const [rateValue, setRateValue] = useState<number>(2.5);
   
 
   return (
@@ -725,6 +727,46 @@ export default function App() {
             <Tooltip title="Left tip" placement="left"><Button>Left</Button></Tooltip>
             <Tooltip title="Right tip" placement="right"><Button>Right</Button></Tooltip>
             <Tooltip title={<span>Rich tip ✨</span>} placement="top"><span style={{ padding: 8, border: '1px solid var(--dui-border)', borderRadius: 6 }}>Hover me</span></Tooltip>
+          </div>
+        </div>
+
+        <div style={{ borderTop: '1px solid var(--dui-border)', paddingTop: 16 }}>
+          <h3 style={{ margin: '8px 0' }}>Rate Examples</h3>
+          <div style={{ display: 'grid', gap: 16 }}>
+            <div style={{ display: 'flex', gap: 16, alignItems: 'center', flexWrap: 'wrap' }}>
+              <div>
+                <h4 style={{ margin: '4px 0' }}>Basic</h4>
+                <Rate />
+              </div>
+              <div>
+                <h4 style={{ margin: '4px 0' }}>Count 10</h4>
+                <Rate count={10} />
+              </div>
+              <div>
+                <h4 style={{ margin: '4px 0' }}>Allow Half</h4>
+                <Rate allowHalf />
+              </div>
+              <div>
+                <h4 style={{ margin: '4px 0' }}>Disabled</h4>
+                <Rate disabled defaultValue={3} />
+              </div>
+              <div>
+                <h4 style={{ margin: '4px 0' }}>ReadOnly</h4>
+                <Rate readOnly value={4} />
+              </div>
+              <div>
+                <h4 style={{ margin: '4px 0' }}>Custom Character</h4>
+                <Rate character={<span>❤️</span>} />
+              </div>
+            </div>
+            <div>
+              <h4 style={{ margin: '4px 0' }}>Controlled (allowHalf)</h4>
+              <Rate allowHalf value={rateValue} onChange={setRateValue} />
+              <div style={{ color: 'var(--dui-text-secondary)', marginTop: 8 }}>Value: {rateValue}</div>
+            </div>
+            <div style={{ color: 'var(--dui-text-secondary)' }}>
+              Tip: Use Arrow keys to adjust when focused.
+            </div>
           </div>
         </div>
 

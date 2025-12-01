@@ -1,0 +1,10 @@
+.zephyr-rate { display: inline-flex; gap: var(--spacing-xxs); align-items: center; }
+.zephyr-rate-star { position: relative; width: 24px; height: 24px; cursor: pointer; border: none; background: transparent; padding: 0; display: inline-flex; align-items: center; justify-content: center; }
+.zephyr-rate-star-disabled { cursor: not-allowed; opacity: 0.6; }
+.zephyr-rate-star-base { color: var(--color-border); font-size: 20px; line-height: 1; pointer-events: none; }
+.zephyr-rate-star-fill { position: absolute; left: 0; top: 0; width: 100%; height: 100%; color: var(--color-warning); font-size: 20px; line-height: 1; overflow: hidden; display: inline-flex; align-items: center; justify-content: center; pointer-events: none; }
+.zephyr-rate-star * { pointer-events: none; }
+.zephyr-rate-star-empty .zephyr-rate-star-fill { width: 0; }
+.zephyr-rate-star-half .zephyr-rate-star-fill { width: 50%; }
+.zephyr-rate-star-full .zephyr-rate-star-fill { width: 100%; }
+.zephyr-rate:focus-visible { outline: none; box-shadow: 0 0 0 3px var(--color-primary-light); border-radius: var(--radius-small); }

@@ -5,6 +5,7 @@ export { default as DatePicker } from './components/DatePicker';
 export { default as Collapse } from './components/Collapse';
 export { default as Timeline } from './components/Timeline';
 export { default as Tooltip } from './components/Tooltip';
+export { default as Rate } from './components/Rate';
 export { Checkbox, CheckboxGroup } from './components/Checkbox';
 export { Form, FormItem } from './components/Form';
 export { Input } from './components/Input';
