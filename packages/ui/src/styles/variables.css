@@ -92,7 +92,29 @@
   --font-weight-bold: 700;
 }
 
-/* 深色模式 */
+/* DatePicker tokens */
+:root {
+  --cal-primary-color: #007bff;
+  --cal-primary-hover: #0056b3;
+  --cal-secondary-color: #6c757d;
+  --cal-text-color: #333;
+  --cal-text-muted: #6c757d;
+  --cal-border-color: #dee2e6;
+  --cal-background: #fff;
+  --cal-disabled-bg: #f8f9fa;
+  --cal-disabled-text: #6c757d;
+  --cal-today-bg: #e3f2fd;
+  --cal-today-text: #1976d2;
+  --cal-font-size: 14px;
+  --cal-header-height: 40px;
+  --cal-day-size: 32px;
+  --cal-border-radius: 4px;
+  --cal-padding: 8px;
+  --cal-gap: 2px;
+  --cal-transition-duration: 0.2s;
+  --cal-transition-timing: ease-in-out;
+}
+
 @media (prefers-color-scheme: dark) {
   :root {
     --color-primary: #4a9eff;
@@ -110,6 +132,19 @@
     --color-success: #68d391;
     --color-warning: #f6e05e;
     --color-error: #fc8181;
+
+    /* DatePicker dark tokens */
+    --cal-primary-color: #4dabf7;
+    --cal-primary-hover: #339af0;
+    --cal-secondary-color: #adb5bd;
+    --cal-text-color: #e9ecef;
+    --cal-text-muted: #adb5bd;
+    --cal-border-color: #495057;
+    --cal-background: #212529;
+    --cal-disabled-bg: #343a40;
+    --cal-disabled-text: #6c757d;
+    --cal-today-bg: #1c3a5e;
+    --cal-today-text: #74c0fc;
   }
 }
 
@@ -134,4 +169,17 @@
     --switch-on-border: #4a9eff;
     --switch-off-bg: #2d3748;
     --switch-off-border: #4a5568;
+
+  /* DatePicker dark tokens (manual) */
+  --cal-primary-color: #4dabf7;
+  --cal-primary-hover: #339af0;
+  --cal-secondary-color: #adb5bd;
+  --cal-text-color: #e9ecef;
+  --cal-text-muted: #adb5bd;
+  --cal-border-color: #495057;
+  --cal-background: #212529;
+  --cal-disabled-bg: #343a40;
+  --cal-disabled-text: #6c757d;
+  --cal-today-bg: #1c3a5e;
+  --cal-today-text: #74c0fc;
   }

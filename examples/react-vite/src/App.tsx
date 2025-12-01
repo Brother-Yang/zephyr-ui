@@ -15,7 +15,8 @@ import {
   Tabs,
   Form,
   FormItem,
-  Empty
+  Empty,
+  DatePicker
 } from '@zephyr-ui/ui';
 
 export default function App() {
@@ -61,6 +62,8 @@ export default function App() {
   const [tabsActive, setTabsActive] = useState<string>('a1');
   const [switchA, setSwitchA] = useState(false);
   const [switchB, setSwitchB] = useState(true);
+  const [dpSingle, setDpSingle] = useState<Date | null>(null);
+  const [dpRange, setDpRange] = useState<[Date, Date] | null>(null);
 
   return (
     <ConfigProvider theme={dark ? 'dark' : 'light'} locale={locale}>
@@ -574,6 +577,83 @@ export default function App() {
                 activeKey={tabsActive}
                 onChange={setTabsActive}
               />
+            </div>
+          </div>
+        </div>
+
+        <div style={{ borderTop: '1px solid var(--dui-border)', paddingTop: 16 }}>
+          <h3 style={{ margin: '8px 0' }}>DatePicker Examples</h3>
+          <div style={{ display: 'grid', gap: 24 }}>
+            <div>
+              <h4 style={{ margin: '4px 0' }}>Single (controlled)</h4>
+              <DatePicker
+                mode="single"
+                value={dpSingle}
+                onChange={setDpSingle}
+                placeholder="选择日期"
+              />
+              <div style={{ color: 'var(--dui-text-secondary)', marginTop: 8 }}>
+                Selected: {dpSingle ? dpSingle.toLocaleDateString() : 'None'}
+              </div>
+            </div>
+
+            <div>
+              <h4 style={{ margin: '4px 0' }}>Range (controlled)</h4>
+              <DatePicker
+                mode="range"
+                value={dpRange}
+                onChange={setDpRange}
+                placeholder="选择日期范围"
+              />
+              <div style={{ color: 'var(--dui-text-secondary)', marginTop: 8 }}>
+                Selected: {dpRange && dpRange[0] && dpRange[1] ? `${dpRange[0].toLocaleDateString()} ~ ${dpRange[1].toLocaleDateString()}` : 'None'}
+              </div>
+            </div>
+
+            <div>
+              <h4 style={{ margin: '4px 0' }}>Disabled Past Dates</h4>
+              <DatePicker
+                mode="single"
+                disabledDate={(date) => date < new Date(new Date().setHours(0, 0, 0, 0))}
+                placeholder="不可选择过去日期"
+              />
+            </div>
+
+            <div>
+              <h4 style={{ margin: '4px 0' }}>Custom Styled + Prefix</h4>
+              <DatePicker
+                mode="single"
+                classNamePrefix="dp"
+                cssVariables={{
+                  '--cal-primary-color': '#7c3aed',
+                  '--cal-primary-hover': '#6d28d9',
+                  '--cal-font-size': '16px',
+                  '--cal-day-size': '36px'
+                }}
+              />
+            </div>
+
+            <div>
+              <h4 style={{ margin: '4px 0' }}>Custom Format</h4>
+              <DatePicker
+                mode="single"
+                format={(v) => {
+                  if (!v || Array.isArray(v)) return '';
+                  const d = v as Date;
+                  return `${d.getFullYear()}年${String(d.getMonth() + 1).padStart(2, '0')}月${String(d.getDate()).padStart(2, '0')}日`;
+                }}
+                placeholder="YYYY年MM月DD日"
+              />
+            </div>
+
+            <div>
+              <h4 style={{ margin: '4px 0' }}>Disabled Picker</h4>
+              <DatePicker disabled placeholder="Disabled" />
+            </div>
+
+            <div>
+              <h4 style={{ margin: '4px 0' }}>Default Month</h4>
+              <DatePicker defaultMonth={new Date(2025, 0, 1)} />
             </div>
           </div>
         </div>

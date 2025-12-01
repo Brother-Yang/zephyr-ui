@@ -25,3 +25,5 @@ export type { ConfigProviderProps, Locale, ThemeMode, ThemeTokens, ComponentSize
 export { enUS, zhCN } from '../context/ConfigProvider';
 export { Radio, RadioGroup } from './Radio';
 export type { RadioProps, RadioSize, RadioGroupProps, RadioGroupOption } from './Radio';
+export { default as DatePicker } from './DatePicker';
+export type { DatePickerProps } from './DatePicker';

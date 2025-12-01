@@ -1,0 +1,39 @@
+
+.zephyr-datepicker-container { display: inline-block; background: var(--cal-background); border: 1px solid var(--cal-border-color); border-radius: var(--cal-border-radius); font-size: var(--cal-font-size); font-family: inherit; box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); }
+.zephyr-datepicker-picker { position: relative; display: inline-flex; align-items: center; gap: var(--cal-gap); border: 1px solid var(--color-border); border-radius: var(--radius-medium); background: var(--color-background); color: var(--color-text); padding: 0 var(--spacing-sm); min-height: var(--input-height-md); box-shadow: none; }
+.zephyr-datepicker-input { display: inline-flex; align-items: center; gap: var(--spacing-sm); width: 100%; cursor: pointer; }
+.zephyr-datepicker-input-text { color: var(--color-text); font-size: var(--font-size-sm); }
+.zephyr-datepicker-caret { color: var(--color-text-secondary); margin-left: auto; border: none; background: transparent; cursor: pointer; }
+.zephyr-datepicker-picker:hover { border-color: var(--color-border-hover); }
+.zephyr-datepicker-picker:focus-within { border-color: var(--color-border-focus); box-shadow: 0 0 0 3px var(--color-primary-light); }
+.zephyr-datepicker-panel { position: absolute; top: calc(100% + 8px); left: 0; min-width: 280px; z-index: 1000; background: var(--cal-background); border: 1px solid var(--color-border); border-radius: var(--radius-medium); box-shadow: var(--shadow-medium); overflow: visible; }
+.zephyr-datepicker-header { display: flex; align-items: center; justify-content: space-between; height: var(--cal-header-height); padding: 0 var(--cal-padding); border-bottom: 1px solid var(--cal-border-color); background: var(--cal-background); }
+.zephyr-datepicker-title { font-weight: 600; color: var(--cal-text-color); font-size: calc(var(--cal-font-size) * 1.1); }
+.zephyr-datepicker-nav-button { display: flex; align-items: center; justify-content: center; width: 24px; height: 24px; border: none; background: transparent; color: var(--cal-text-muted); cursor: pointer; border-radius: var(--cal-border-radius); font-size: 16px; font-weight: bold; transition: all var(--cal-transition-duration) var(--cal-transition-timing); }
+.zephyr-datepicker-nav-button:hover { background: var(--cal-disabled-bg); color: var(--cal-text-color); }
+.zephyr-datepicker-nav-button:active { background: var(--cal-border-color); }
+.zephyr-datepicker-weekdays { display: grid; grid-template-columns: repeat(7, 1fr); gap: var(--cal-gap); padding: var(--cal-padding); background: var(--cal-disabled-bg); border-bottom: 1px solid var(--cal-border-color); }
+.zephyr-datepicker-weekday { display: flex; align-items: center; justify-content: center; height: var(--cal-day-size); font-weight: 600; color: var(--cal-text-muted); font-size: calc(var(--cal-font-size) * 0.9); }
+.zephyr-datepicker-days { display: block; gap: var(--cal-gap); padding: var(--cal-padding); }
+.zephyr-datepicker-week { display: grid; grid-template-columns: repeat(7, 1fr); gap: var(--cal-gap); }
+.zephyr-datepicker-week:not(:last-child) { margin-bottom: var(--cal-gap); }
+.zephyr-datepicker-day { display: flex; align-items: center; justify-content: center; width: var(--cal-day-size); height: var(--cal-day-size); border: none; background: var(--cal-background); color: var(--cal-text-color); cursor: pointer; border-radius: var(--cal-border-radius); font-size: var(--cal-font-size); font-family: inherit; transition: all var(--cal-transition-duration) var(--cal-transition-timing); position: relative; }
+.zephyr-datepicker-day:hover { background: var(--cal-disabled-bg); color: var(--cal-text-color); }
+.zephyr-datepicker-day:active { background: var(--cal-border-color); }
+.zephyr-datepicker-day-other-month { color: var(--cal-text-muted); opacity: 0.6; }
+.zephyr-datepicker-day-today { background: var(--cal-today-bg); color: var(--cal-today-text); font-weight: 600; }
+.zephyr-datepicker-day-today:hover { background: var(--cal-today-bg); opacity: 0.8; }
+.zephyr-datepicker-day-selected { background: var(--cal-primary-color); color: #fff; font-weight: 600; }
+.zephyr-datepicker-day-selected:hover { background: var(--cal-primary-hover); color: #fff; }
+.zephyr-datepicker-day-range-start, .zephyr-datepicker-day-range-end { background: var(--cal-primary-color); color: #fff; font-weight: 600; }
+.zephyr-datepicker-day-range-start:hover, .zephyr-datepicker-day-range-end:hover { background: var(--cal-primary-hover); color: #fff; }
+.zephyr-datepicker-day-range-middle { background: rgba(0, 123, 255, 0.1); color: var(--cal-primary-color); }
+.zephyr-datepicker-day-range-middle:hover { background: rgba(0, 123, 255, 0.2); }
+.zephyr-datepicker-day-disabled { background: var(--cal-disabled-bg); color: var(--cal-disabled-text); cursor: not-allowed; opacity: 0.6; }
+.zephyr-datepicker-day-disabled:hover { background: var(--cal-disabled-bg); color: var(--cal-disabled-text); }
+/* 修复 focus outline 被遮挡：使用 box-shadow 作为聚焦环，避免超出元素边界 */
+.zephyr-datepicker-day:focus { outline: none; box-shadow: 0 0 0 2px var(--cal-primary-color); }
+
+@media (max-width: 480px) {
+  :root { --cal-font-size: 12px; --cal-day-size: 28px; --cal-header-height: 36px; --cal-padding: 6px; }
+}

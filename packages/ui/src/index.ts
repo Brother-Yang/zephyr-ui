@@ -1,6 +1,7 @@
 export { ConfigProvider, enUS, zhCN, useConfig } from './config';
 import './styles/variables.css';
 export { Button } from './components/Button';
+export { default as DatePicker } from './components/DatePicker';
 export { Checkbox, CheckboxGroup } from './components/Checkbox';
 export { Form, FormItem } from './components/Form';
 export { Input } from './components/Input';
