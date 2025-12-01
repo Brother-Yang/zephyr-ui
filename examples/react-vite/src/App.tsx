@@ -20,9 +20,9 @@ import {
   DatePicker,
   Collapse,
   Timeline,
-  Tooltip
+  Tooltip,
+  Rate
 } from '@zephyr-ui/ui';
-import { Rate } from '@zephyr-ui/ui';
 
 export default function App() {
   const [dark, setDark] = useState(false);
@@ -188,7 +188,7 @@ export default function App() {
                   name="city"
                 />
               </div>
-              <div style={{ color: 'var(--dui-text-secondary)' }}>
+              <div>
                 Tip: Focus the group and use Arrow keys to navigate.
               </div>
             </div>
@@ -428,7 +428,7 @@ export default function App() {
             }}
             centered
           >
-            <div style={{ color: 'var(--dui-text-secondary)' }}>这是一个示例弹窗内容。</div>
+            <div>这是一个示例弹窗内容。</div>
           </Modal>
         </div>
 
@@ -501,7 +501,7 @@ export default function App() {
                 <FormItem name="agree" label="Agreement" required valuePropName="checked">
                   <Checkbox label="I agree" />
                 </FormItem>
-                <div style={{ color: 'var(--dui-text-secondary)' }}>Last change: {lastChange}</div>
+                <div>Last change: {lastChange}</div>
                 <div style={{ display: 'flex', gap: 12 }}>
                   <Button type="submit">Submit</Button>
                   <Button type="reset" variant="secondary">Reset</Button>
@@ -624,7 +624,7 @@ export default function App() {
                 onChange={setDpSingle}
                 placeholder="选择日期"
               />
-              <div style={{ color: 'var(--dui-text-secondary)', marginTop: 8 }}>
+              <div style={{ marginTop: 8 }}>
                 Selected: {dpSingle ? dpSingle.toLocaleDateString() : 'None'}
               </div>
             </div>
@@ -637,7 +637,7 @@ export default function App() {
                 onChange={setDpRange}
                 placeholder="选择日期范围"
               />
-              <div style={{ color: 'var(--dui-text-secondary)', marginTop: 8 }}>
+              <div style={{ marginTop: 8 }}>
                 Selected: {dpRange && dpRange[0] && dpRange[1] ? `${dpRange[0].toLocaleDateString()} ~ ${dpRange[1].toLocaleDateString()}` : 'None'}
               </div>
             </div>
@@ -789,7 +789,7 @@ export default function App() {
             onCancel={() => setModalBasic(false)}
             onOk={() => setModalBasic(false)}
           >
-            <div style={{ color: 'var(--dui-text-secondary)' }}>这是一个基础弹窗。</div>
+            <div>这是一个基础弹窗。</div>
           </Modal>
 
           <Modal
@@ -799,7 +799,7 @@ export default function App() {
             onCancel={() => setModalCentered(false)}
             onOk={() => setModalCentered(false)}
           >
-            <div style={{ color: 'var(--dui-text-secondary)' }}>弹窗垂直居中显示。</div>
+            <div>弹窗垂直居中显示。</div>
           </Modal>
 
           <Modal
@@ -813,7 +813,7 @@ export default function App() {
             }
             onCancel={() => setModalCustomFooter(false)}
           >
-            <div style={{ color: 'var(--dui-text-secondary)' }}>底部按钮自定义。</div>
+            <div>底部按钮自定义。</div>
           </Modal>
 
           <Modal
@@ -822,7 +822,7 @@ export default function App() {
             footer={null}
             onCancel={() => setModalNoFooter(false)}
           >
-            <div style={{ color: 'var(--dui-text-secondary)' }}>不显示底部区域。</div>
+            <div>不显示底部区域。</div>
           </Modal>
 
           <Modal
@@ -832,7 +832,7 @@ export default function App() {
             onCancel={() => setModalMaskFalse(false)}
             onOk={() => setModalMaskFalse(false)}
           >
-            <div style={{ color: 'var(--dui-text-secondary)' }}>点击遮罩不会关闭。</div>
+            <div>点击遮罩不会关闭。</div>
           </Modal>
 
           <Modal
@@ -842,7 +842,7 @@ export default function App() {
             onCancel={() => setModalKeyboardFalse(false)}
             onOk={() => setModalKeyboardFalse(false)}
           >
-            <div style={{ color: 'var(--dui-text-secondary)' }}>按 Esc 不会关闭。</div>
+            <div>按 Esc 不会关闭。</div>
           </Modal>
 
           <Modal
@@ -862,7 +862,7 @@ export default function App() {
             onCancel={() => setModalLarge(false)}
             onOk={() => setModalLarge(false)}
           >
-            <div style={{ color: 'var(--dui-text-secondary)' }}>更大的对话框宽度。</div>
+            <div>更大的对话框宽度。</div>
           </Modal>
 
           <Modal
@@ -872,7 +872,7 @@ export default function App() {
             onCancel={() => setModalCloseIcon(false)}
             onOk={() => setModalCloseIcon(false)}
           >
-            <div style={{ color: 'var(--dui-text-secondary)' }}>右上角图标自定义。</div>
+            <div>右上角图标自定义。</div>
           </Modal>
 
           <Modal
@@ -882,7 +882,7 @@ export default function App() {
             onCancel={() => setModalHighZ(false)}
             onOk={() => setModalHighZ(false)}
           >
-            <div style={{ color: 'var(--dui-text-secondary)' }}>更高的层级覆盖。</div>
+            <div>更高的层级覆盖。</div>
           </Modal>
 
           <Modal
@@ -895,7 +895,7 @@ export default function App() {
               setTimeout(() => { setOkLoading(false); setModalLoadingOpen(false) }, 1000)
             }}
           >
-            <div style={{ color: 'var(--dui-text-secondary)' }}>点击确定后显示加载并延迟关闭。</div>
+            <div>点击确定后显示加载并延迟关闭。</div>
           </Modal>
         </div>
 
@@ -931,9 +931,9 @@ export default function App() {
             <div>
               <h4 style={{ margin: '4px 0' }}>Controlled (allowHalf)</h4>
               <Rate allowHalf value={rateValue} onChange={setRateValue} />
-              <div style={{ color: 'var(--dui-text-secondary)', marginTop: 8 }}>Value: {rateValue}</div>
+              <div style={{  marginTop: 8 }}>Value: {rateValue}</div>
             </div>
-            <div style={{ color: 'var(--dui-text-secondary)' }}>
+            <div>
               Tip: Use Arrow keys to adjust when focused.
             </div>
           </div>
