@@ -266,7 +266,7 @@ const DatePicker: React.FC<DatePickerProps> = ({
         <div className={withPrefix('datepicker-header')}>
           <button className={withPrefix('datepicker-nav-button')} onClick={() => handleMonthChange('prev')} aria-label={dp?.prevMonth}>‹</button>
           <div className={withPrefix('datepicker-title')}>
-            {(dp?.monthTitle ? dp.monthTitle(state.currentMonth) : `${state.currentMonth.getFullYear()}年${state.currentMonth.getMonth() + 1}月`)}
+            {dp?.monthTitle && dp.monthTitle(state.currentMonth) }
           </div>
           <button className={withPrefix('datepicker-nav-button')} onClick={() => handleMonthChange('next')} aria-label={dp?.nextMonth}>›</button>
         </div>
@@ -300,7 +300,7 @@ const DatePicker: React.FC<DatePickerProps> = ({
                     else if (mode === 'range' && phase === 'end') setOpen(false);
                   }}
                   disabled={day.isDisabled}
-                  aria-label={(dp?.formatDayAria ? dp.formatDayAria(day.date) : `${day.date.getFullYear()}年${day.date.getMonth() + 1}月${day.date.getDate()}日`)}
+                  aria-label={dp?.formatDayAria && dp.formatDayAria(day.date) }
                 >
                   {day.date.getDate()}
                 </button>
