@@ -272,7 +272,7 @@ const DatePicker: React.FC<DatePickerProps> = ({
         </div>
 
         <div className={withPrefix('datepicker-weekdays')}>
-          {weekdays.map(day => (
+          {weekdays?.map(day => (
             <div key={day} className={withPrefix('datepicker-weekday')}>{day}</div>
           ))}
         </div>
