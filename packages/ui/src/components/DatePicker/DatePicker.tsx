@@ -2,6 +2,7 @@ import React, { useState, useMemo, useCallback } from 'react';
 import './DatePicker.css';
 import { withPrefix } from '../../config/classPrefix';
 import type { DatePickerProps, CalendarDay, CalendarState } from '../../types/datepicker';
+import { useConfig } from '../../config';
 
 const DatePicker: React.FC<DatePickerProps> = ({
   mode = 'single',
@@ -12,7 +13,7 @@ const DatePicker: React.FC<DatePickerProps> = ({
   className = '',
   style,
   cssVariables,
-  placeholder = '请选择日期',
+  placeholder,
   disabled = false,
   format
 }) => {
@@ -181,7 +182,9 @@ const DatePicker: React.FC<DatePickerProps> = ({
     });
   }, []);
 
-  const weekdays = ['一', '二', '三', '四', '五', '六', '日'];
+  const { locale } = useConfig();
+  const dp = locale?.datePicker;
+  const weekdays = dp?.weekdays;
 
   const containerStyle = useMemo(() => {
     const customStyle: React.CSSProperties = { ...style };
@@ -236,12 +239,12 @@ const DatePicker: React.FC<DatePickerProps> = ({
         onFocus={() => !disabled && setOpen(true)}
       >
         <span className={withPrefix('datepicker-input-text')}>
-          {formatted || placeholder}
+          {formatted || (placeholder ?? (mode === 'range' ? (dp?.placeholderRange) : (dp?.placeholderSingle)))}
         </span>
         <button
           type="button"
           className={withPrefix('datepicker-caret')}
-          aria-label={open ? '关闭日期选择器' : '打开日期选择器'}
+          aria-label={open ? (dp?.closeAriaLabel) : (dp?.openAriaLabel)}
           onMouseDown={(e) => { e.stopPropagation(); if (!disabled) setOpen(o => !o); }}
           disabled={disabled}
         >
@@ -252,11 +255,11 @@ const DatePicker: React.FC<DatePickerProps> = ({
       {open && (
       <div className={withPrefix('datepicker-panel')} role="dialog" aria-modal={false} onMouseDown={(e) => e.stopPropagation()}>
         <div className={withPrefix('datepicker-header')}>
-          <button className={withPrefix('datepicker-nav-button')} onClick={() => handleMonthChange('prev')} aria-label="上一月">‹</button>
+          <button className={withPrefix('datepicker-nav-button')} onClick={() => handleMonthChange('prev')} aria-label={dp?.prevMonth}>‹</button>
           <div className={withPrefix('datepicker-title')}>
-            {state.currentMonth.getFullYear()}年{state.currentMonth.getMonth() + 1}月
+            {(dp?.monthTitle ? dp.monthTitle(state.currentMonth) : `${state.currentMonth.getFullYear()}年${state.currentMonth.getMonth() + 1}月`)}
           </div>
-          <button className={withPrefix('datepicker-nav-button')} onClick={() => handleMonthChange('next')} aria-label="下一月">›</button>
+          <button className={withPrefix('datepicker-nav-button')} onClick={() => handleMonthChange('next')} aria-label={dp?.nextMonth}>›</button>
         </div>
 
         <div className={withPrefix('datepicker-weekdays')}>
@@ -288,7 +291,7 @@ const DatePicker: React.FC<DatePickerProps> = ({
                     else if (mode === 'range' && phase === 'end') setOpen(false);
                   }}
                   disabled={day.isDisabled}
-                  aria-label={`${day.date.getFullYear()}年${day.date.getMonth() + 1}月${day.date.getDate()}日`}
+                  aria-label={(dp?.formatDayAria ? dp.formatDayAria(day.date) : `${day.date.getFullYear()}年${day.date.getMonth() + 1}月${day.date.getDate()}日`)}
                 >
                   {day.date.getDate()}
                 </button>

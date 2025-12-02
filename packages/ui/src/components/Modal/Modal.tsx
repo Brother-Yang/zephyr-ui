@@ -4,6 +4,7 @@ import './Modal.css'
 import { withPrefix } from '../../config/classPrefix'
 import '../../styles/variables.css'
 import type { ModalProps } from '../../types/modal'
+import { useConfig } from '../../config'
 import { Button } from '../Button'
 
 export default function Modal({
@@ -11,8 +12,8 @@ export default function Modal({
   title,
   children,
   footer,
-  okText = '确定',
-  cancelText = '取消',
+  okText,
+  cancelText,
   onOk,
   onCancel,
   confirmLoading = false,
@@ -27,6 +28,7 @@ export default function Modal({
   className = '',
   style
 }: ModalProps) {
+  const { locale } = useConfig()
   const wrapperRef = React.useRef<HTMLDivElement | null>(null)
   const titleId = React.useMemo(() => `modal-title-${Math.random().toString(36).slice(2)}`, [])
 
@@ -78,7 +80,7 @@ export default function Modal({
               {closable && (
                 <button
                   className={withPrefix('modal-close')}
-                  aria-label="Close"
+                  aria-label={locale?.modal?.closeAriaLabel ?? locale?.common?.close}
                   onClick={(e) => onCancel?.(e as any)}
                 >
                   {closeIcon ?? <span>&times;</span>}
@@ -95,8 +97,8 @@ export default function Modal({
                 footer
               ) : (
                 <>
-                  <Button variant="secondary" onClick={(e) => onCancel?.(e as any)}>{cancelText}</Button>
-                  <Button variant="primary" onClick={(e) => onOk?.(e as any)} loading={confirmLoading}>{okText}</Button>
+                  <Button variant="secondary" onClick={(e) => onCancel?.(e as any)}>{cancelText ?? locale?.modal?.cancelText  }</Button>
+                    <Button variant="primary" onClick={(e) => onOk?.(e as any)} loading={confirmLoading}>{okText ?? locale?.modal?.okText}</Button>
                 </>
               )}
             </div>
@@ -108,4 +110,3 @@ export default function Modal({
 
   return ReactDOM.createPortal(root, document.body)
 }
-

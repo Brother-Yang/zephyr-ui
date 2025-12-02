@@ -21,6 +21,25 @@ type Locale = {
   input: {
     clear: string;
   };
+  datePicker?: {
+    weekdays?: string[];
+    openAriaLabel?: string;
+    closeAriaLabel?: string;
+    prevMonth?: string;
+    nextMonth?: string;
+    placeholderSingle?: string;
+    placeholderRange?: string;
+    formatDayAria?: (date: Date) => string;
+    monthTitle?: (date: Date) => string;
+  };
+  modal?: {
+    okText?: string;
+    cancelText?: string;
+    closeAriaLabel?: string;
+  };
+  common?: {
+    close?: string;
+  };
 };
 
 export const enUS: Locale = {
@@ -35,7 +54,20 @@ export const enUS: Locale = {
     noData: 'No data',
     pagination: { prev: 'Prev', next: 'Next', items: 'items' }
   },
-  input: { clear: 'Clear' }
+  input: { clear: 'Clear' },
+  datePicker: {
+    weekdays: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
+    openAriaLabel: 'Open date picker',
+    closeAriaLabel: 'Close date picker',
+    prevMonth: 'Prev month',
+    nextMonth: 'Next month',
+    placeholderSingle: 'Select date',
+    placeholderRange: 'Select date range',
+    formatDayAria: (d) => `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`,
+    monthTitle: (d) => `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}`
+  },
+  modal: { okText: 'OK', cancelText: 'Cancel', closeAriaLabel: 'Close' },
+  common: { close: 'Close' }
 };
 
 export const zhCN: Locale = {
@@ -50,7 +82,20 @@ export const zhCN: Locale = {
     noData: '暂无数据',
     pagination: { prev: '上一页', next: '下一页', items: '条' }
   },
-  input: { clear: '清除' }
+  input: { clear: '清除' },
+  datePicker: {
+    weekdays: ['一', '二', '三', '四', '五', '六', '日'],
+    openAriaLabel: '打开日期选择器',
+    closeAriaLabel: '关闭日期选择器',
+    prevMonth: '上一月',
+    nextMonth: '下一月',
+    placeholderSingle: '请选择日期',
+    placeholderRange: '请选择日期范围',
+    formatDayAria: (d) => `${d.getFullYear()}年${String(d.getMonth() + 1)}月${String(d.getDate())}日`,
+    monthTitle: (d) => `${d.getFullYear()}年${d.getMonth() + 1}月`
+  },
+  modal: { okText: '确定', cancelText: '取消', closeAriaLabel: '关闭' },
+  common: { close: '关闭' }
 };
 
 type DesignTokens = Record<string, string | number>;
@@ -62,7 +107,7 @@ type ConfigContextValue = {
   classPrefix?: string;
 };
 
-const ConfigContext = createContext<ConfigContextValue>({ theme: 'light', locale: enUS });
+const ConfigContext = createContext<ConfigContextValue>({ theme: 'light', locale: zhCN });
 
 function mergeLocale(base: Locale, overrides: Partial<Locale> | Locale): Locale {
   const o = overrides as any;
@@ -85,6 +130,25 @@ function mergeLocale(base: Locale, overrides: Partial<Locale> | Locale): Locale 
     },
     input: {
       clear: o?.input?.clear ?? base.input.clear
+    },
+    datePicker: {
+      weekdays: o?.datePicker?.weekdays ?? base.datePicker?.weekdays,
+      openAriaLabel: o?.datePicker?.openAriaLabel ?? base.datePicker?.openAriaLabel,
+      closeAriaLabel: o?.datePicker?.closeAriaLabel ?? base.datePicker?.closeAriaLabel,
+      prevMonth: o?.datePicker?.prevMonth ?? base.datePicker?.prevMonth,
+      nextMonth: o?.datePicker?.nextMonth ?? base.datePicker?.nextMonth,
+      placeholderSingle: o?.datePicker?.placeholderSingle ?? base.datePicker?.placeholderSingle,
+      placeholderRange: o?.datePicker?.placeholderRange ?? base.datePicker?.placeholderRange,
+      formatDayAria: o?.datePicker?.formatDayAria ?? base.datePicker?.formatDayAria,
+      monthTitle: o?.datePicker?.monthTitle ?? base.datePicker?.monthTitle
+    },
+    modal: {
+      okText: o?.modal?.okText ?? base.modal?.okText,
+      cancelText: o?.modal?.cancelText ?? base.modal?.cancelText,
+      closeAriaLabel: o?.modal?.closeAriaLabel ?? base.modal?.closeAriaLabel
+    },
+    common: {
+      close: o?.common?.close ?? base.common?.close
     }
   };
 }

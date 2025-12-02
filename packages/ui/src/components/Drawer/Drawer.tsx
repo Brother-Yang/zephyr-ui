@@ -4,6 +4,7 @@ import './Drawer.css'
 import { withPrefix } from '../../config/classPrefix'
 import '../../styles/variables.css'
 import type { DrawerProps } from '../../types/drawer'
+import { useConfig } from '../../config'
 
 export default function Drawer({
   open,
@@ -23,6 +24,7 @@ export default function Drawer({
   onClose,
   children
 }: DrawerProps) {
+  const { locale } = useConfig()
   const wrapperRef = React.useRef<HTMLDivElement | null>(null)
   const titleId = React.useMemo(() => `drawer-title-${Math.random().toString(36).slice(2)}`, [])
 
@@ -76,7 +78,7 @@ export default function Drawer({
                 {closable && (
                   <button
                     className={withPrefix('drawer-close')}
-                    aria-label="Close"
+                    aria-label={locale?.modal?.closeAriaLabel ?? locale?.common?.close}
                     onClick={(e) => onClose?.(e)}
                   >
                     {closeIcon ?? <span>&times;</span>}
@@ -95,4 +97,3 @@ export default function Drawer({
 
   return ReactDOM.createPortal(root, document.body)
 }
-
