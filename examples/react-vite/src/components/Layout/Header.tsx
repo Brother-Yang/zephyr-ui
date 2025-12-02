@@ -1,16 +1,16 @@
 import React from 'react';
 import { Button } from '@zephyr/ui';
 import { Sun, Moon, Languages } from 'lucide-react';
-import { useTheme } from '../../hooks/useTheme';
-import { useLocale } from '../../hooks/useLocale';
 
 interface HeaderProps {
   className?: string;
+  theme: 'light' | 'dark';
+  language: 'zh' | 'en';
+  onToggleTheme: () => void;
+  onToggleLanguage: () => void;
 }
 
-export default function Header({ className = '' }: HeaderProps) {
-  const { theme, toggleTheme } = useTheme();
-  const { language, toggleLanguage } = useLocale();
+export default function Header({ className = '', theme, language, onToggleTheme, onToggleLanguage }: HeaderProps) {
 
   return (
     <header className={`h-16 bg-white dark:bg-gray-800 border-b border-gray-200 dark:border-gray-700 px-6 flex items-center justify-between ${className}`}>
@@ -22,7 +22,7 @@ export default function Header({ className = '' }: HeaderProps) {
         <Button
           variant="ghost"
           size="small"
-          onClick={toggleTheme}
+          onClick={onToggleTheme}
           className="flex items-center gap-2"
         >
           {theme === 'light' ? <Moon size={16} /> : <Sun size={16} />}
@@ -34,7 +34,7 @@ export default function Header({ className = '' }: HeaderProps) {
         <Button
           variant="ghost"
           size="small"
-          onClick={toggleLanguage}
+          onClick={onToggleLanguage}
           className="flex items-center gap-2"
         >
           <Languages size={16} />

@@ -14,8 +14,8 @@ import { useLocale } from './hooks/useLocale';
 type Page = 'home' | 'components' | 'component';
 
 export default function App() {
-  const { theme } = useTheme();
-  const { locale, language } = useLocale();
+  const { theme, toggleTheme } = useTheme();
+  const { locale, language, toggleLanguage } = useLocale();
   const [currentPage, setCurrentPage] = useState<Page>('home');
   const [selectedComponent, setSelectedComponent] = useState<string>('');
 
@@ -71,10 +71,14 @@ export default function App() {
   };
 
   return (
-    <ConfigProvider theme={theme} locale={language === 'en' ? enUS : zhCN}>
+    <ConfigProvider theme={theme} locale={locale}>
       <Layout 
         selectedComponent={selectedComponent}
         onComponentSelect={handleComponentSelect}
+        theme={theme}
+        language={language}
+        onToggleTheme={toggleTheme}
+        onToggleLanguage={toggleLanguage}
       >
         {renderContent()}
       </Layout>
