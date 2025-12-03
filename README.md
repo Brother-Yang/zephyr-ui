@@ -6,7 +6,7 @@
 ## 安装与使用
 
 ```bash
-pnpm add zephyr-ui react react-dom
+pnpm add zephyr-react-ui react react-dom
 ```
 
 ```tsx
@@ -34,7 +34,7 @@ import {
   Progress,
   Tree,
   Drawer
-} from 'zephyr-ui'
+} from 'zephyr-react-ui'
 
 export default function App() {
   return (
@@ -52,7 +52,7 @@ export default function App() {
 - 数据展示：`Table`、`Tabs`、`Collapse`、`Timeline`、`Rate`、`Progress`、`Tree`
 - 反馈：`Modal`、`Drawer`
 
-组件入口位于 `packages/ui/src/components`，统一从包根 `zephyr-ui` 导出。
+组件入口位于 `packages/ui/src/components`，统一从包根 `zephyr-react-ui` 导出。
 
 ## 配置与主题
 
@@ -63,7 +63,7 @@ export default function App() {
 - `classPrefix`：设置全局类名前缀（默认 `zephyr-`）
 
 ```tsx
-import { ConfigProvider, zhCN } from 'zephyr-ui'
+import { ConfigProvider, zhCN } from 'zephyr-react-ui'
 
 <ConfigProvider theme="dark" locale={zhCN} classPrefix="app">
   {/* children */}
@@ -75,7 +75,7 @@ import { ConfigProvider, zhCN } from 'zephyr-ui'
 ### Modal 对话框
 
 ```tsx
-import { Modal, Button } from 'zephyr-ui'
+import { Modal, Button } from 'zephyr-react-ui'
 
 function Demo() {
   const [open, setOpen] = useState(false)
@@ -100,7 +100,7 @@ function Demo() {
 ### Drawer 抽屉
 
 ```tsx
-import { Drawer, Button } from 'zephyr-ui'
+import { Drawer, Button } from 'zephyr-react-ui'
 
 function Demo() {
   const [open, setOpen] = useState(false)
@@ -118,7 +118,7 @@ function Demo() {
 ### Progress 进度条
 
 ```tsx
-import { Progress } from 'zephyr-ui'
+import { Progress } from 'zephyr-react-ui'
 
 <>
   <Progress type="line" percent={60} />
@@ -130,7 +130,7 @@ import { Progress } from 'zephyr-ui'
 ### Tree 树形组件
 
 ```tsx
-import { Tree } from 'zephyr-ui'
+import { Tree } from 'zephyr-react-ui'
 
 const data = [
   { key: 'a', title: 'A', children: [ { key: 'a1', title: 'A1' } ] },

@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { zhCN, enUS } from 'zephyr-ui';
+import { zhCN, enUS } from 'zephyr-react-ui';
 import type { Language } from '../types';
 
 export const useLocale = () => {

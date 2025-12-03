@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { componentData } from '../../utils/componentData';
 import { highlightCode, copyToClipboard } from '../../utils/codeExamples';
 import { Copy, Check } from 'lucide-react';
-import { Button } from 'zephyr-ui';
+import { Button } from 'zephyr-react-ui';
 
 interface ComponentCardProps {
   componentName: string;

@@ -5,9 +5,9 @@
   "description": "Workspace root",
   "type": "module",
   "scripts": {
-    "build": "pnpm -F zephyr-ui build",
+    "build": "pnpm -F zephyr-react-ui build",
     "dev": "pnpm -F example dev",
-    "test": "pnpm -F zephyr-ui test",
+    "test": "pnpm -F zephyr-react-ui test",
     "lint": "eslint ."
   },
   "dependencies": {

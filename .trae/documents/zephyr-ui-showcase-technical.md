@@ -144,7 +144,7 @@ export const useTheme = () => {
 ```typescript
 // hooks/useLocale.ts
 import { useState, useEffect } from 'react';
-import { zhCN, enUS } from 'zephyr-ui';
+import { zhCN, enUS } from 'zephyr-react-ui';
 
 export const useLocale = () => {
   const [locale, setLocale] = useState(zhCN);
@@ -175,7 +175,7 @@ export const useLocale = () => {
 
 ```typescript
 // App.tsx
-import { ConfigProvider } from 'zephyr-ui';
+import { ConfigProvider } from 'zephyr-react-ui';
 import { useTheme } from './hooks/useTheme';
 import { useLocale } from './hooks/useLocale';
 import Layout from './components/Layout';

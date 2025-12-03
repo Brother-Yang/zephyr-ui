@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button } from 'zephyr-ui';
+import { Button } from 'zephyr-react-ui';
 import { ArrowRight, Palette, Code, Zap } from 'lucide-react';
 
 interface HomeProps {
@@ -79,7 +79,7 @@ export default function Home({ onGetStarted }: HomeProps) {
               安装
             </h3>
             <div className="bg-gray-900 text-gray-100 p-4 rounded-lg">
-              <code className="text-sm">npm install zephyr-ui</code>
+              <code className="text-sm">npm install zephyr-react-ui</code>
             </div>
           </div>
           <div>
@@ -88,7 +88,7 @@ export default function Home({ onGetStarted }: HomeProps) {
             </h3>
             <div className="bg-gray-900 text-gray-100 p-4 rounded-lg">
               <pre className="text-sm">
-{`import { Button } from 'zephyr-ui';
+{`import { Button } from 'zephyr-react-ui';
 
 function App() {
   return <Button type="primary">点击我</Button>;

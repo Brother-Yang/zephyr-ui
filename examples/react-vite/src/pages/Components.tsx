@@ -1,6 +1,6 @@
 import React from 'react';
 import { componentData } from '../utils/componentData';
-import { Button } from 'zephyr-ui';
+import { Button } from 'zephyr-react-ui';
 import { ArrowRight } from 'lucide-react';
 
 interface ComponentsProps {

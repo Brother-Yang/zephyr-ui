@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button } from 'zephyr-ui';
+import { Button } from 'zephyr-react-ui';
 import { Sun, Moon, Languages } from 'lucide-react';
 
 interface HeaderProps {

@@ -3,7 +3,7 @@ import {
   ConfigProvider,
   enUS,
   zhCN,
-} from 'zephyr-ui';
+} from 'zephyr-react-ui';
 import Layout from './components/Layout';
 import Home from './pages/Home';
 import Components from './pages/Components';

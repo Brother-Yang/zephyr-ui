@@ -23,7 +23,7 @@ import {
   Modal,
   Drawer,
   Tree
-} from 'zephyr-ui';
+} from 'zephyr-react-ui';
 
 export const componentData: ComponentConfig[] = [
   {

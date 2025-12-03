@@ -1,5 +1,5 @@
 {
-  "name": "zephyr-ui",
+  "name": "zephyr-react-ui",
   "version": "0.1.0",
   "description": "Zephyr UI: A modern, lightweight, and customizable React component library for quickly building elegant and accessible enterprise-grade interfaces",
   "type": "module",
@@ -12,7 +12,7 @@
       "import": "./dist/index.es.js",
       "require": "./dist/index.cjs.js"
     },
-    "./dist/zephyr-ui.css": "./dist/zephyr-ui.css"
+    "./dist/zephyr-react-ui.css": "./dist/zephyr-react-ui.css"
   },
   "vitest": {
     "setupFiles": ["./vitest.setup.ts"]
