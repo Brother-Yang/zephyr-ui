@@ -1,4 +1,5 @@
 export { ConfigProvider, enUS, zhCN, useConfig } from './config';
+import './styles/reset.css';
 import './styles/variables.css';
 export { Button } from './components/Button';
 export { default as DatePicker } from './components/DatePicker';
